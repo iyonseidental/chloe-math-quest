@@ -28,6 +28,7 @@ export function freshModel(name = 'Chloe'): StudentModel {
     name,
     activeTrack: 'M1',
     diagnosedTracks: [],
+    unlockedTracks: [],
     createdAt: Date.now(),
     lastActiveDate: null,
     streakDays: 0,

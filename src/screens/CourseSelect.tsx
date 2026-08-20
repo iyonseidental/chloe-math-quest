@@ -25,10 +25,15 @@ export default function CourseSelect({ onStartDiagnosis, onEnterTrack }: Props) 
   const statuses = Object.fromEntries(trackStatuses(model).map((s) => [s.trackId, s]));
   const [notice, setNotice] = useState<string | null>(null);
 
+  const unlocked = new Set(model.unlockedTracks ?? []);
+
   const handleClick = (t: TrackDef) => {
     if (!t.hasContent) {
+      // 정직한 안내: 잠금의 실제 이유는 "순서"가 아니라 이 과정의 문제은행이 아직 준비 중이라서다.
       setNotice(
-        `${t.emoji} ${t.name} 과정은 Phase 3에서 열려요. 먼저 ${t.prereqTracks.map((p) => TRACK_MAP[p].name).join(', ')} 과정을 정복하면 자연스럽게 이어집니다!`,
+        unlocked.has(t.id)
+          ? `${t.emoji} ${t.name} 과정은 미리 열어 두었어요! 이 과정의 문제은행은 다음 업데이트에서 제공됩니다. 준비되는 즉시 진단부터 바로 시작할 수 있어요. 그때까지는 ${t.prereqTracks.map((p) => TRACK_MAP[p].name).join(', ')} 과정으로 기초를 다져 두면 좋아요.`
+          : `${t.emoji} ${t.name} 과정은 문제은행 준비 중이에요 (다음 업데이트 예정). 순서와 상관없이 미리 열어 두고 싶다면 카드의 "미리 열기" 버튼을 눌러 주세요. 참고로 중1·중2·중3은 지금도 순서 제한 없이 아무 과정이나 진단을 시작할 수 있어요!`,
       );
       return;
     }
@@ -39,6 +44,13 @@ export default function CourseSelect({ onStartDiagnosis, onEnterTrack }: Props) 
     }
     mutateModel((m) => ({ ...m, activeTrack: t.id }));
     onEnterTrack();
+  };
+
+  // 순서 무시 "미리 열기" — 선택은 즉시 저장되고, 해당 과정 콘텐츠가 배포되는 순간부터
+  // 선행 정복 여부와 무관하게 바로 학습 가능 상태가 된다.
+  const preUnlock = (t: TrackDef) => {
+    mutateModel((m) => ({ ...m, unlockedTracks: [...new Set([...(m.unlockedTracks ?? []), t.id])] }));
+    setNotice(`🔓 ${t.emoji} ${t.name} 과정을 미리 열어 두었어요! 문제은행이 배포되면 선행 정복 없이 바로 도전할 수 있어요.`);
   };
 
   return (
@@ -94,7 +106,7 @@ export default function CourseSelect({ onStartDiagnosis, onEnterTrack }: Props) 
                           Elite 완료
                         </span>
                       )}
-                      {!t.hasContent && <Lock size={12} className="text-slate-300" />}
+                      {!t.hasContent && (unlocked.has(t.id) ? <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[9px] font-bold text-sky-600">🔓 미리 열림</span> : <Lock size={12} className="text-slate-300" />)}
                     </span>
                   </div>
                   <p className={`mt-1.5 text-sm font-bold ${t.hasContent ? 'text-slate-800' : 'text-slate-400'}`}>{t.name}</p>
@@ -113,7 +125,28 @@ export default function CourseSelect({ onStartDiagnosis, onEnterTrack }: Props) 
                       )}
                     </div>
                   ) : (
-                    <p className="mt-2 text-[10px] font-medium text-slate-300">Phase 3 오픈 예정 · 선행: {t.prereqTracks.map((p) => TRACK_MAP[p].name).join(', ')}</p>
+                    <div className="mt-2">
+                      <p className="text-[10px] font-medium text-slate-300">문제은행 준비 중 · 권장 선행: {t.prereqTracks.map((p) => TRACK_MAP[p].name).join(', ')}</p>
+                      {!unlocked.has(t.id) && (
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            preUnlock(t);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.stopPropagation();
+                              preUnlock(t);
+                            }
+                          }}
+                          className="mt-1.5 inline-block rounded-lg border border-sky-200 bg-sky-50 px-2.5 py-1 text-[10px] font-bold text-sky-600 hover:bg-sky-100"
+                        >
+                          🔓 순서 상관없이 미리 열기
+                        </span>
+                      )}
+                    </div>
                   )}
                 </button>
               );

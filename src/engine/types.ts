@@ -174,6 +174,7 @@ export interface StudentModel {
   name: string;
   activeTrack: TrackId; // 현재 학습 중인 과정
   diagnosedTracks: TrackId[]; // 진단평가를 마친 과정들
+  unlockedTracks?: TrackId[]; // 선행 순서와 무관하게 사용자가 "미리 열기"로 개방한 과정들
   createdAt: number;
   lastActiveDate: string | null;
   streakDays: number;
