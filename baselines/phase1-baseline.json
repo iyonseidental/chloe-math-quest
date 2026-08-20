@@ -1,0 +1,356 @@
+{
+  "frozenAt": "2026-08-19T06:24:27.765Z",
+  "phase": "phase1",
+  "versions": {
+    "config": "2.1.0",
+    "masteryModel": "2.1.0-beta-model",
+    "curriculum": "2.1.0-pilot10",
+    "knowledgeGraph": "2.1.0-pilot10"
+  },
+  "knowledgeGraph": {
+    "skillCount": 10,
+    "skills": [
+      "M1.NUM.SIGN.01",
+      "M1.NUM.SIGN.02",
+      "M1.NUM.FRAC.01",
+      "M1.ALG.EXP.01",
+      "M1.ALG.EXP.02",
+      "M1.ALG.EQ.01",
+      "M1.ALG.EQ.02",
+      "M1.ALG.EQ.03",
+      "M1.FUN.COORD.01",
+      "M1.FUN.COORD.02"
+    ]
+  },
+  "configSnapshot": {
+    "prior": {
+      "alpha": 1,
+      "beta": 4
+    },
+    "evidence": {
+      "correctBase": [
+        0.6,
+        0.8,
+        1,
+        1.3,
+        1.6
+      ],
+      "wrongBase": [
+        1.6,
+        1.3,
+        1,
+        0.8,
+        0.6
+      ],
+      "hintFactor": [
+        1,
+        0.55,
+        0.3,
+        0.12
+      ],
+      "retryFactor": 0.5,
+      "guessFactor": 0.35,
+      "guessSpeedRatio": 0.2,
+      "diversityFactor": 0.5,
+      "diversityStreakThreshold": 4,
+      "transferBonus": 1.5,
+      "retentionPassBonus": 1.2,
+      "transferFailPenalty": 1.2,
+      "retentionFailPenalty": 2,
+      "singleAttemptCap": 2,
+      "overReachDamping": 0.7,
+      "errorTypeWrongFactor": {
+        "CARELESS_ERROR": 0.35,
+        "GUESSING": 0.6,
+        "TIME_PRESSURE": 0.5,
+        "CONCEPT_GAP": 1,
+        "PREREQUISITE_GAP": 1,
+        "SIGN_ERROR": 1,
+        "CALCULATION_ERROR": 1,
+        "FORMULA_ERROR": 1,
+        "READING_ERROR": 1,
+        "INTERPRETATION_ERROR": 1,
+        "STRATEGY_ERROR": 1,
+        "LOGIC_ERROR": 1,
+        "DIAGRAM_ERROR": 1,
+        "UNKNOWN": 1
+      }
+    },
+    "attribution": {
+      "correctSecondaryFactor": 0.15,
+      "wrongPrimaryFactorWhenSecondaryIsRoot": 0.2,
+      "carelessSecondaryFactor": 0
+    },
+    "decay": {
+      "graceDays": 14,
+      "dailyDecayFactor": 0.995
+    },
+    "confidenceBands": {
+      "veryLow": 3,
+      "low": 8,
+      "medium": 20,
+      "high": 45
+    },
+    "confidenceDowngradeUncertainty": 0.12,
+    "stability": {
+      "threshold": 0.75,
+      "unknownEvidenceThreshold": 3,
+      "minEvidenceForSkip": 8,
+      "retReliabilityDefault": 0.85,
+      "recencyGraceDays": 14,
+      "recencyDailyFactor": 0.99,
+      "errorPenaltyPerRecentWrong": 0.15,
+      "errorPenaltyCap": 0.4,
+      "confidencePenaltyPerU": 1.5,
+      "confidencePenaltyCap": 0.4
+    },
+    "gate": {
+      "masteryThreshold": 0.85,
+      "independentRateThreshold": 0.8,
+      "independentWindow": 8,
+      "minEffectiveEvidence": 10,
+      "minConfidenceRank": 2
+    },
+    "confidenceOrder": [
+      "VERY_LOW",
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "VERY_HIGH"
+    ],
+    "retentionIntervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30
+    ],
+    "retentionStageResultState": [
+      "EARLY_MASTERY",
+      "MASTERED",
+      "MASTERED",
+      "STABLE_MASTERY",
+      "STABLE_MASTERY"
+    ],
+    "misconception": {
+      "strongTriggerScore": 1,
+      "weakTriggerScore": 0.5,
+      "cleanAnswerDecay": 0.3,
+      "suspectThreshold": 1,
+      "confirmProblemCount": 2,
+      "confirmPassToClear": true,
+      "activeMasteryCap": 0.6,
+      "clearedRelapseScore": 0.3
+    },
+    "remediation": {
+      "maxStageFailures": 2,
+      "foundationTarget": 2
+    },
+    "rootCause": {
+      "maxDepth": 4,
+      "maxProbePerCase": 5,
+      "maxConsecutiveProbes": 3,
+      "surprisingFailureConfirmExtra": 1
+    },
+    "probePriority": {
+      "specificityConfirm": 1,
+      "specificityNarrow": 0.7,
+      "specificityShared": 0.5,
+      "uncertaintyBaseline": 0.5
+    },
+    "difficulty": {
+      "minSampleSize": 50,
+      "levelOffsets": [
+        -0.8,
+        -0.3,
+        0.2,
+        0.8,
+        1.5
+      ],
+      "empiricalBlendConfidenceThreshold": 0.7,
+      "residualToLevel": 5
+    },
+    "session": {
+      "maxDiagnosticShare": 0.3
+    },
+    "diagnostic": {
+      "budget": 16,
+      "inferredSeedAlpha": 1.8,
+      "inferredSeedBeta": 0.6
+    },
+    "adaptive": {
+      "forgettingRiskPerOverdueDay": 0.15,
+      "forgettingRiskCap": 2.5,
+      "curriculumImportanceDefault": 1,
+      "errorFrequencyWeight": 0.25,
+      "prereqImportanceWeight": 0.2,
+      "opportunityBoost": {
+        "REMEDIATION": 2,
+        "WEAKENED": 1.6,
+        "REVIEW_DUE": 1.5,
+        "PRACTICING": 1.2,
+        "LEARNING": 1.1,
+        "PROVISIONAL": 0.8,
+        "EARLY_MASTERY": 0.6,
+        "MASTERED": 0.35,
+        "STABLE_MASTERY": 0.2,
+        "EXPOSED": 1.3,
+        "UNSEEN": 1.4
+      },
+      "diversityRepeatPenalty": 0.5,
+      "diversityStreakPenalty": 0.3,
+      "fastTrackStreak": 3,
+      "fastTrackMinP": 0.8,
+      "frustrationStreak": 3
+    },
+    "xp": {
+      "correct": 10,
+      "advancedCorrect": 20,
+      "remediationRetry": 30,
+      "transferSuccess": 40,
+      "retentionSuccess": 40,
+      "skillMastered": 100,
+      "gapPermanentlyFixed": 120
+    }
+  },
+  "suites": {
+    "test21-step0": {
+      "pass": true,
+      "summary": "13 checks passed — Step 0 OK"
+    },
+    "test21-mastery": {
+      "pass": true,
+      "summary": "28 checks passed — Step 2 (Mastery & Uncertainty) OK"
+    },
+    "test21-attribution": {
+      "pass": true,
+      "summary": "9 checks passed — Step 3 (Evidence Attribution) OK"
+    },
+    "test21-misconception": {
+      "pass": true,
+      "summary": "16 checks passed — Step 4 (Misconception FSM) OK"
+    },
+    "test21-rootcause": {
+      "pass": true,
+      "summary": "29 checks passed — Step 5 (Stability + Root Cause + Probe Selection) OK"
+    },
+    "test21-remediation": {
+      "pass": true,
+      "summary": "27 checks passed — Step 6 (Minimum-Dose Remediation) OK"
+    },
+    "test21-retention": {
+      "pass": true,
+      "summary": "32 checks passed — Step 7 (Long-Term State Machine + Retention) OK"
+    },
+    "test21-adaptive": {
+      "pass": true,
+      "summary": "20 checks passed — Step 8 (Adaptive Progression) OK"
+    },
+    "test21-calibration": {
+      "pass": true,
+      "summary": "13 checks passed — Step 9 (Calibration & Evaluation) OK"
+    },
+    "test21-session": {
+      "pass": true,
+      "summary": "13 checks passed — Step 10 (Session Orchestrator + Replay) OK"
+    },
+    "test21-replay-config": {
+      "pass": true,
+      "summary": "6 checks passed — Step 11c (Replay under a changed config) OK"
+    },
+    "test21-diagnostic": {
+      "pass": true,
+      "summary": "30 checks passed — Step 12 (Adaptive Diagnostic) OK"
+    },
+    "qa21": {
+      "pass": true,
+      "summary": "🎉 QA Scenarios 1-20 — ALL PASS"
+    },
+    "simulate21": {
+      "pass": true,
+      "summary": "🎉 Synthetic Learners A-K — ALL PASS"
+    }
+  },
+  "calibration": {
+    "calibrationError": 0.19041532683591011,
+    "brierScore": 0.21895191944002038,
+    "accuracyByBand": [
+      {
+        "band": "0-10%",
+        "meanPredicted": 0.08523535017070755,
+        "actualRate": 0.24752475247524752,
+        "n": 101
+      },
+      {
+        "band": "10-20%",
+        "meanPredicted": 0.14695870378991824,
+        "actualRate": 0.2863849765258216,
+        "n": 639
+      },
+      {
+        "band": "20-30%",
+        "meanPredicted": 0.24579067824867634,
+        "actualRate": 0.49,
+        "n": 700
+      },
+      {
+        "band": "30-40%",
+        "meanPredicted": 0.3449261095348805,
+        "actualRate": 0.6367816091954023,
+        "n": 435
+      },
+      {
+        "band": "40-50%",
+        "meanPredicted": 0.4521560547920781,
+        "actualRate": 0.81,
+        "n": 200
+      },
+      {
+        "band": "50-60%",
+        "meanPredicted": 0.5517672763144629,
+        "actualRate": 0.8366834170854272,
+        "n": 398
+      },
+      {
+        "band": "60-70%",
+        "meanPredicted": 0.6478794958922252,
+        "actualRate": 0.8366533864541833,
+        "n": 251
+      },
+      {
+        "band": "70-80%",
+        "meanPredicted": 0.7596268237552289,
+        "actualRate": 0.8391608391608392,
+        "n": 572
+      },
+      {
+        "band": "80-90%",
+        "meanPredicted": 0.8363813698053794,
+        "actualRate": 0.9068100358422939,
+        "n": 279
+      },
+      {
+        "band": "90-100%",
+        "meanPredicted": 0.9384884798307331,
+        "actualRate": 0.9774436090225563,
+        "n": 133
+      }
+    ],
+    "retentionPredictionAccuracy": 0.7635767993123581,
+    "rootCauseHitRate": 0,
+    "probeYield": 0.14678899082568808,
+    "falseMasteryRate": 0.125,
+    "falseWeaknessRate": 0,
+    "misconceptionPrecision": 1,
+    "misconceptionRecall": 0.42105263157894735,
+    "gapClosureSuccessRate": 0.9150943396226415,
+    "transferPredictiveValue": 0.02676264304171283,
+    "n": {
+      "predictions": 3708,
+      "probes": 218,
+      "rootCauseTrials": 2,
+      "misconceptionTrials": 38,
+      "remediationOutcomes": 106
+    }
+  }
+}

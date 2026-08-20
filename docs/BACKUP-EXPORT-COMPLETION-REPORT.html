@@ -1,0 +1,441 @@
+<title>채림이의 학습 금고</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #FBFAF7;
+    --surface: #FFFFFF;
+    --ink: #232433;
+    --muted: #6E7180;
+    --line: #E7E5DE;
+    --accent: #5B5BD6;
+    --accent-soft: #EEEEFB;
+    --grow: #2E9E6B;
+    --grow-soft: #E7F5EE;
+    --warn: #D97706;
+    --warn-soft: #FCF3E3;
+    --chip-ink: #FFFFFF;
+    --code-bg: #F3F2EC;
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #17181F;
+      --surface: #20222C;
+      --ink: #E8E8EF;
+      --muted: #9A9DB0;
+      --line: #33364434;
+      --accent: #8B8BF0;
+      --accent-soft: #2A2B45;
+      --grow: #4FC08D;
+      --grow-soft: #1E3A2E;
+      --warn: #E8A44C;
+      --warn-soft: #3A2E1B;
+      --code-bg: #1B1C24;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #17181F;
+    --surface: #20222C;
+    --ink: #E8E8EF;
+    --muted: #9A9DB0;
+    --line: #33364434;
+    --accent: #8B8BF0;
+    --accent-soft: #2A2B45;
+    --grow: #4FC08D;
+    --grow-soft: #1E3A2E;
+    --warn: #E8A44C;
+    --warn-soft: #3A2E1B;
+    --code-bg: #1B1C24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    font-size: 15.5px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 96px; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 0 48px; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 208px minmax(0, 1fr); } }
+
+  /* ── 헤더 ── */
+  header { padding: 56px 0 36px; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em;
+    color: var(--accent); text-transform: uppercase; margin: 0 0 10px;
+  }
+  h1 {
+    font-family: 'IBM Plex Sans KR', sans-serif; font-weight: 700;
+    font-size: clamp(30px, 5.2vw, 44px); line-height: 1.2; margin: 0 0 14px; text-wrap: balance;
+  }
+  .lede { max-width: 62ch; color: var(--muted); margin: 0 0 26px; }
+  .verdict {
+    display: inline-flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--grow-soft); color: var(--grow);
+    border: 1px solid color-mix(in srgb, var(--grow) 30%, transparent);
+    padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 13.5px;
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grow); }
+  .pill.indigo { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
+  .pill.indigo .dot { background: var(--accent); }
+
+  /* ── 요약 스탯 ── */
+  .stats {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 30px 0 0;
+  }
+  @media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+  }
+  .stat b {
+    display: block; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 26px; line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat span { font-size: 12.5px; color: var(--muted); }
+
+  /* ── 목차 레일 ── */
+  nav.toc { display: none; }
+  @media (min-width: 900px) {
+    nav.toc { display: block; position: sticky; top: 28px; align-self: start; padding-top: 40px; }
+    nav.toc a {
+      display: block; color: var(--muted); text-decoration: none; font-size: 13px;
+      padding: 4px 0 4px 12px; border-left: 2px solid var(--line); line-height: 1.5;
+    }
+    nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--accent); outline: none; }
+    nav.toc .toc-head {
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+      color: var(--muted); text-transform: uppercase; margin: 0 0 8px;
+    }
+  }
+
+  /* ── 본문 섹션 ── */
+  main { padding-top: 40px; min-width: 0; }
+  section { margin: 0 0 44px; scroll-margin-top: 24px; }
+  .part {
+    display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px;
+    letter-spacing: 0.1em; color: var(--chip-ink); background: var(--accent);
+    border-radius: 6px; padding: 3px 9px; margin: 0 0 10px;
+  }
+  h2 {
+    font-family: 'IBM Plex Sans KR', sans-serif; font-weight: 700; font-size: 22px;
+    margin: 0 0 14px; line-height: 1.35; text-wrap: balance;
+  }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 700; }
+  .muted { color: var(--muted); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px 20px; margin: 0 0 16px;
+  }
+  .card.grow { border-color: color-mix(in srgb, var(--grow) 35%, transparent); background: var(--grow-soft); }
+  .card.warn { border-color: color-mix(in srgb, var(--warn) 35%, transparent); background: var(--warn-soft); }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin: 0 0 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--surface); }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  td b { font-variant-numeric: tabular-nums; }
+
+  code, .mono {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.88em;
+    background: var(--code-bg); border-radius: 5px; padding: 2px 6px;
+  }
+  pre {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6;
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 18px; overflow-x: auto; margin: 0 0 16px;
+  }
+  pre code { background: none; padding: 0; }
+
+  /* 부모 가이드 스텝 */
+  .steps { counter-reset: step; display: grid; gap: 10px; margin: 0 0 16px; }
+  .step {
+    counter-increment: step; display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+  }
+  .step::before {
+    content: counter(step);
+    font-family: 'IBM Plex Sans KR', sans-serif; font-weight: 700; font-size: 15px;
+    flex: 0 0 30px; height: 30px; display: grid; place-items: center;
+    background: var(--accent); color: var(--chip-ink); border-radius: 50%;
+  }
+  .step p { margin: 0; }
+
+  .footer-note {
+    border-top: 1px solid var(--line); margin-top: 24px; padding-top: 20px;
+    font-size: 13px; color: var(--muted); max-width: 68ch;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    section { animation: rise 0.4s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">CHLOE MATH · Backup · Restore · Analysis Export</p>
+    <h1>채림이의 학습 금고</h1>
+    <p class="lede">
+      실사용을 시작하기 전, 채림이의 모든 학습 기록을 <strong>잃어버리지 않고 · 되살릴 수 있고 · 다시 분석할 수 있게</strong>
+      만드는 시스템이 완성되었습니다. 이 페이지는 그 완료 보고서(PART A–N)입니다.
+    </p>
+    <div class="verdict">
+      <span class="pill"><span class="dot"></span>전 테스트 1~13 통과 · 34/34 검사</span>
+      <span class="pill indigo"><span class="dot"></span>실브라우저 Export→Restore 왕복 검증</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>29</b><span>통합 아카이브 파일 수<br>(백업 12 + 분석 17)</span></div>
+      <div class="stat"><b>548</b><span>E2E 검증에 쓴 학습 이벤트<br>무손실 왕복 복원</span></div>
+      <div class="stat"><b>13/13</b><span>요구 테스트 전부 구현·통과<br>+ 인프라 검사 21건</span></div>
+      <div class="stat"><b>0</b><span>학습 엔진 알고리즘 변경<br>(순수 인프라 계층)</span></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <nav class="toc" aria-label="목차">
+      <p class="toc-head">Contents</p>
+      <a href="#pa">A · 백업 스키마</a>
+      <a href="#pb">B · 생성 파일</a>
+      <a href="#pc">C · Raw Event 무결성</a>
+      <a href="#pd">D · Replay 검증</a>
+      <a href="#pe">E · 복원 테스트</a>
+      <a href="#pf">F · 버전 마이그레이션</a>
+      <a href="#pg">G · 분석 패키지</a>
+      <a href="#ph">H · CSV 검증</a>
+      <a href="#pi">I · Real/Synthetic 분리</a>
+      <a href="#pj">J · 프라이버시</a>
+      <a href="#pk">K · 자동 테스트</a>
+      <a href="#pl">L · 브라우저 E2E</a>
+      <a href="#pm">M · 알려진 한계</a>
+      <a href="#pn">N · 부모 사용 안내</a>
+    </nav>
+
+    <main>
+      <section id="pa">
+        <span class="part">PART A</span>
+        <h2>백업 스키마 v1.0</h2>
+        <p>
+          원칙은 하나입니다 — <strong>Raw Events가 유일한 원본</strong>. 모든 숙달도·오개념·치료 기록은
+          이벤트 재생(replay)으로 언제든 다시 계산되므로, 백업이 지켜야 할 것은 원시 이벤트 하나뿐입니다.
+          이벤트는 삭제·요약·재정렬·재작성 없이 그대로 보존됩니다.
+        </p>
+        <div class="tablewrap"><table>
+          <tr><th>항목</th><th>내용</th></tr>
+          <tr><td>스키마 버전</td><td><code>1.0</code> — 파일마다 명시, major 불일치 시 복원 거부</td></tr>
+          <tr><td>보존 버전 정보</td><td>config <b>2.3.0</b> · masteryModel <b>2.2.0-ability-beta</b> · curriculum <b>2.3.0-m1full-pure</b> · graph <b>2.2.0-m1full35</b> · schema <b>1.0</b></td></tr>
+          <tr><td>파일 형식</td><td>무압축(store) ZIP — 외부 라이브러리 0, 바이트 결정성, CRC-32 + SHA-256 이중 무결성</td></tr>
+          <tr><td>데이터 출처 라벨</td><td><code>dataSource: REAL | SYNTHETIC</code> — manifest·README에 강제 표기, 혼합 불가</td></tr>
+        </table></div>
+      </section>
+
+      <section id="pb">
+        <span class="part">PART B</span>
+        <h2>생성 파일</h2>
+        <p><strong>완전 백업</strong> ZIP은 지시 명세의 12개 파일을 전부 담습니다:</p>
+        <pre><code>CHLOE_MATH_BACKUP_YYYY-MM-DD_HH-mm.zip
+├── manifest.json            버전·기간·이벤트 수·출처
+├── events.jsonl             ★ 원본 — 한 줄 = 한 이벤트, 시간순
+├── student-profile.json     표시 이름 정도만 (프라이버시 최소화)
+├── versions.json            5종 버전 스냅숏
+├── curriculum-reference.json  skillId 해독 사전
+├── misconception-reference.json  오개념 id 해독 사전
+├── remediation-cases.json   파생 스냅숏 (원본 아님)
+├── golden-assessments.json  파생 스냅숏
+├── elite-events.json        파생 스냅숏
+├── current-derived-state.json  전체 Digital Twin (검증·편의용)
+├── integrity.json           SHA-256 체크섬 + replay 검증 결과
+└── README.md                복원 방법 안내</code></pre>
+        <p>
+          <strong>통합 아카이브</strong>는 <code>full-backup/</code>과 <code>analysis-package/</code>
+          두 폴더를 한 파일에 담아(총 29파일) 정기 보관용 원클릭 버튼으로 제공됩니다.
+          파일명은 <code>CHLOE_MATH_COMPLETE_2026-08-20_17-46.zip</code> 형식입니다.
+        </p>
+      </section>
+
+      <section id="pc">
+        <span class="part">PART C</span>
+        <h2>Raw Event 무결성</h2>
+        <ul>
+          <li><code>integrity.json</code>에 이벤트 수 · 첫/끝 seq · replay 검증 결과 · <strong>파일별 SHA-256</strong> 저장</li>
+          <li>ZIP 자체도 엔트리별 CRC-32 — 읽는 순간 손상 감지</li>
+          <li>가져오기 시 <strong>중복 seq · 비단조 seq</strong>를 검사해 병합 오염을 원천 거부 (merge는 설계상 금지, REPLACE 복원만)</li>
+          <li>이벤트 한 글자만 손상돼도: 체크섬 불일치 → <strong>복원 거부</strong> (TEST 3에서 기계 검증)</li>
+        </ul>
+      </section>
+
+      <section id="pd">
+        <span class="part">PART D</span>
+        <h2>Replay 검증 — 백업 성공 조건</h2>
+        <p>
+          Export 직전마다 원시 이벤트를 처음부터 재생해 라이브 상태와 대조합니다. 비교 항목은
+          이벤트 seq · 스킬 상태(숙달/불확실성/보존) · 오개념 · 치료 케이스 · Elite 프로필 · 학습 큐 ·
+          Golden 장부 · 예측 기록 · 전략 흔적 — <strong>하나라도 다르면 BACKUP VALIDATION FAILED</strong>로
+          표시되며 경고 확인 없이는 저장되지 않습니다 (라이브 상태를 일부러 변조한 테스트로 확인).
+        </p>
+      </section>
+
+      <section id="pe">
+        <span class="part">PART E</span>
+        <h2>복원 테스트</h2>
+        <p>복원은 절대 바로 덮어쓰지 않습니다. 실제 흐름:</p>
+        <pre><code>백업 선택 → manifest 검증 → 스키마 검증 → 체크섬 검증
+→ 이벤트 순서 검증 → 버전 호환 분석 → 샌드박스 재생
+→ 결과 비교 화면 (현재 548건 vs 백업 548건 · VALID)
+→ 사용자 확인 → 현재 상태 안전 백업(PRE_RESTORE) 자동 다운로드 → 교체</code></pre>
+        <ul>
+          <li><strong>TEST 1</strong> Export→Import→Replay: Digital Twin 완전 일치 ✓</li>
+          <li><strong>TEST 2</strong> 초기화 후 Import: 전체 진행 복원 ✓</li>
+          <li><strong>TEST 3</strong> 손상 파일: 거부 ✓ &nbsp; <strong>TEST 4</strong> manifest 누락: 거부 ✓</li>
+        </ul>
+      </section>
+
+      <section id="pf">
+        <span class="part">PART F</span>
+        <h2>버전 마이그레이션</h2>
+        <p>
+          구모델 백업을 만나면 이벤트를 버리는 대신 <strong>현재 모델로 재생</strong>하고,
+          백업 속 <code>current-derived-state.json</code>(원본 모델 결과)과 나란히 비교해 보여줍니다 —
+          "원본 모델: 평균 숙달 61% · 게이트 19 → 현재 모델 재생: …" 형식. (TEST 5·6 통과)
+        </p>
+      </section>
+
+      <section id="pg">
+        <span class="part">PART G</span>
+        <h2>분석 패키지 — ChatGPT에 올리는 그 파일</h2>
+        <p>17개 파일. 모든 수치는 raw events의 재생에서 파생되며, 요약에서 원시 이벤트까지 추적 가능합니다(<code>sourceEventSeqs</code>).</p>
+        <div class="tablewrap"><table>
+          <tr><th>먼저 읽는 파일</th><th>내용</th></tr>
+          <tr><td><code>ANALYSIS_README.md</code></td><td>데이터 출처(REAL/SYNTHETIC) 최상단 명시 · metric 정의 · 분석 질문 15개</td></tr>
+          <tr><td><code>analysis-summary.json</code></td><td>학습량·Core·구멍·retention(1/7/14/30일)·transfer(near/delayed/far)·Elite 9차원·M2 준비도 — 전 수치에 n·confidence 동반</td></tr>
+          <tr><td><code>skill-status.csv</code></td><td>35개 스킬 × 17개 컬럼 (숙달·불확실성·보존·전이·오개념·치료)</td></tr>
+          <tr><td><code>weekly-summary.csv</code></td><td>주 단위 성장 집계 (이벤트를 주 경계마다 재생 스냅숏)</td></tr>
+          <tr><td><code>HOW_TO_ANALYZE_WITH_CHATGPT.md</code></td><td>분석기가 곧바로 따라갈 사용 설명</td></tr>
+        </table></div>
+        <p class="muted">
+          이력 CSV 8종(learning/error/misconception/remediation/retention/transfer/elite/strategy) +
+          golden·m2-readiness 이력 + 사람용 <code>latest-parent-report.md</code>(성취의 언어로 서술) +
+          <code>raw-events.jsonl</code> 원본까지 포함됩니다. 기간 필터(전체/최근)와 익명화("Student A") 옵션 제공.
+        </p>
+      </section>
+
+      <section id="ph">
+        <span class="part">PART H</span>
+        <h2>CSV 검증</h2>
+        <ul>
+          <li><strong>TEST 9</strong> — skill-status.csv의 mastery 35행 전부가 raw events 재생값과 일치 ✓</li>
+          <li><strong>TEST 10</strong> — 주간 요약의 시도 합계 = 원천 이벤트 집계 ✓</li>
+          <li><strong>TEST 13</strong> — M2 준비도 export = 라이브 엔진 출력 ✓</li>
+          <li>CSV 이스케이프(쉼표·따옴표·줄바꿈) 및 UTF-8 왕복 검증 ✓</li>
+        </ul>
+      </section>
+
+      <section id="pi">
+        <span class="part">PART I</span>
+        <h2>Real / Synthetic 분리</h2>
+        <p>
+          실사용 학생 id(<code>chloe</code>)에서 나온 데이터만 <strong>REAL</strong> 라벨을 받습니다(TEST 8).
+          테스트 하네스가 만든 데이터는 자동으로 <strong>SYNTHETIC</strong>이 되고 README에
+          "실학습 분석에 사용 금지"가 박힙니다(TEST 7). 두 라벨은 어떤 파일에서도 혼합되지 않습니다.
+        </p>
+      </section>
+
+      <section id="pj">
+        <span class="part">PART J</span>
+        <h2>프라이버시</h2>
+        <ul>
+          <li>백업에 들어가는 개인정보는 <strong>표시 이름 하나</strong> — 주소·연락처·학교 정보는 애초에 수집하지 않음</li>
+          <li>익명화 옵션: 이름을 "Student A"로 바꾼 분석 패키지 생성 가능 (학습 내용은 유지)</li>
+          <li>모든 Export는 read-only — mastery·streak·복습 일정·XP를 1비트도 바꾸지 않음 (기계 검증)</li>
+        </ul>
+      </section>
+
+      <section id="pk">
+        <span class="part">PART K</span>
+        <h2>자동 테스트</h2>
+        <p>
+          <code>scripts/test23-backup.mjs</code> — 요구 테스트 1~13 전부 + ZIP 왕복 · 5MB 스트레스 ·
+          중복 seq 거부 · PRE_RESTORE · 익명화 · 기간 필터 · read-only 보증 = <strong>34개 검사 전부 통과</strong>.
+          상시 회귀 게이트(<code>regress-all.mjs</code>)에 편입되어 Phase 1+2+3 전체(~950 assert)와 함께 매번 돕니다.
+        </p>
+      </section>
+
+      <section id="pl">
+        <span class="part">PART L</span>
+        <h2>실브라우저 E2E</h2>
+        <ul>
+          <li>학부모 리포트 → <strong>DATA &amp; BACKUP</strong> 진입 → "548개의 학습 순간" 자산 히어로 · 백업 리마인더 렌더</li>
+          <li>통합 아카이브 클릭 → ZIP 다운로드 → 완료 리포트 카드: "이벤트 548건 · Replay 검증 PASS · 파일 29개"</li>
+          <li>같은 ZIP을 복원 입력에 주입 → 샌드박스 검증 화면 "VALID ✓ · 현재 548 vs 백업 548 · 출처 REAL" → 복원 실행 → PRE_RESTORE 자동 백업 → 리로드 후 <strong>548 이벤트 무손실 재구성</strong> · 게이트 19/35 보존 · 콘솔 에러 0</li>
+          <li>E2E가 적발한 실결함 1건: 대용량 배열 spread로 인한 스택 초과(브라우저에서만 재현) → 성장형 바이트 버퍼로 재작성, 5MB 스트레스 테스트 추가</li>
+        </ul>
+      </section>
+
+      <section id="pm">
+        <span class="part">PART M</span>
+        <h2>알려진 한계</h2>
+        <div class="card warn">
+          <ul style="margin:0">
+            <li>ZIP은 무압축(store) — 파일이 원본보다 작아지지 않음. 수 MB 학습 데이터에서는 무해하나, 수년치 축적 시 압축 도입 검토</li>
+            <li>복원은 REPLACE 전용 — 두 기기의 로그 병합(merge)은 설계상 금지, 필요 시 별도 마이그레이션 도구로</li>
+            <li>주간 스냅숏 기반 이력(Elite/M2 추이)은 주 경계 단위 — 더 촘촘한 추이는 raw events에서 직접 재계산 가능</li>
+            <li>브라우저 다운로드 폴더가 백업의 보관처 — 클라우드 자동 업로드는 미구현 (부모가 파일을 안전한 곳에 복사)</li>
+            <li>백업 리마인더는 이벤트 100건 기준의 가벼운 안내 — 강제 알림 없음</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pn">
+        <span class="part">PART N</span>
+        <h2>부모 사용 안내 — 이것만 기억하세요</h2>
+        <div class="card grow">
+          <p style="margin:0"><strong>모든 버튼은 한 곳에 있습니다:</strong> 앱 하단 <b>AI코치</b> 탭 → <b>학부모 리포트 보기</b> → <b>DATA &amp; BACKUP</b></p>
+        </div>
+
+        <h2 style="font-size:17px; margin-top:22px">백업 만들기</h2>
+        <div class="steps">
+          <div class="step"><p><b>통합 아카이브</b> 버튼을 누르면 ZIP 파일 하나가 다운로드됩니다. 이 한 파일에 완전 백업과 분석 패키지가 모두 들어 있어요. <span class="muted">한 달에 한 번 정도, 다운로드된 파일을 클라우드나 USB에 복사해 두면 충분합니다.</span></p></div>
+        </div>
+
+        <h2 style="font-size:17px; margin-top:22px">복원하기 (새 기기, 또는 실수로 지웠을 때)</h2>
+        <div class="steps">
+          <div class="step"><p><b>백업 파일 선택</b>을 누르고 보관해 둔 ZIP을 고릅니다.</p></div>
+          <div class="step"><p>화면에 <b>검증 결과: VALID</b>와 함께 "현재 데이터 vs 백업 데이터" 개수가 나옵니다. 확인 후 <b>복원 실행</b>을 누르세요.</p></div>
+          <div class="step"><p>복원 직전에 지금 상태의 안전 백업(PRE_RESTORE)이 자동으로 한 번 더 다운로드됩니다 — 마음이 바뀌면 그 파일로 되돌릴 수 있어요.</p></div>
+        </div>
+
+        <h2 style="font-size:17px; margin-top:22px">ChatGPT로 분석하기</h2>
+        <div class="steps">
+          <div class="step"><p><b>분석 패키지</b> 버튼으로 ZIP을 만듭니다. (이름을 밝히고 싶지 않으면 익명화 체크)</p></div>
+          <div class="step"><p>그 ZIP 파일을 ChatGPT 대화창에 업로드합니다. <b>올릴 파일은 이 하나뿐입니다.</b></p></div>
+          <div class="step"><p>이렇게 요청하세요:</p></div>
+        </div>
+        <pre><code>이 자료는 채림이가 CHLOE MATH를 실제로 사용한 학습 데이터입니다.
+전체 데이터를 분석해서
+1. 현재 수학 실력   2. 성장한 부분   3. 아직 남은 학습 구멍
+4. 반복되는 오답/오개념   5. retention   6. near/far transfer
+7. Elite Thinking   8. M2 선행 준비도   9. 앞으로 4주의 최적 학습 방향
+을 분석해 주세요.</code></pre>
+        <p class="muted">ZIP 안의 <code>HOW_TO_ANALYZE_WITH_CHATGPT.md</code>가 분석기에게 파일 구조와 metric 정의를 안내하므로, 위 요청만으로 충분합니다.</p>
+      </section>
+
+      <p class="footer-note">
+        학습 엔진(mastery · root cause · remediation · Elite · M2 gate)은 이 작업에서 한 줄도 바뀌지 않았습니다 —
+        백업은 순수한 인프라 계층입니다. 이제 채림이가 푸는 모든 문제는, 잃어버릴 수 없는 기록이 됩니다. 🌱
+      </p>
+    </main>
+  </div>
+</div>

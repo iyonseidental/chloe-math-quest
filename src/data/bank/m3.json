@@ -1,0 +1,249 @@
+{
+  "track": "M3",
+  "name": "중3 큐레이션 문제은행",
+  "schemaVersion": 1,
+  "updated": "2026-08-18",
+  "note": "시중 문제집·기출 유형을 참고해 창작한 검증 문제.",
+  "questions": [
+    {
+      "id": "M3.NUM.SQRT.B001",
+      "skill": "M3.NUM.SQRT",
+      "level": 3,
+      "variant": "standard",
+      "stem": "다음을 계산하세요.\n√48 − √12",
+      "choices": [
+        { "text": "2√3", "error": null },
+        { "text": "6", "error": "CONCEPT" },
+        { "text": "2√6", "error": "CALCULATION" },
+        { "text": "6√3", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["각 근호를 가장 간단한 꼴로 먼저 바꿔요.", "√48 = 4√3, √12 = 2√3.", "같은 √3끼리 빼요."],
+      "idea": "빼기 전에 '간단히' — 겉모습이 달라도 같은 근호가 숨어 있을 수 있다.",
+      "solve": "√48 = 4√3, √12 = 2√3 → 4√3 − 2√3 = 2√3.",
+      "remember": "√48 − √12 ≠ √36. 근호끼리는 직접 빼면 안 돼요!",
+      "estimatedSec": 90,
+      "tags": ["근호정리", "동류항"]
+    },
+    {
+      "id": "M3.NUM.SQRT.B002",
+      "skill": "M3.NUM.SQRT",
+      "level": 5,
+      "variant": "standard",
+      "stem": "부등식 3 < √x < 4 를 만족하는 자연수 x의 개수는?",
+      "choices": [
+        { "text": "6개", "error": null },
+        { "text": "7개", "error": "INTERPRETATION" },
+        { "text": "5개", "error": "CALCULATION" },
+        { "text": "1개", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["각 변을 제곱해도 부등호 방향은 유지돼요 (모두 양수).", "9 < x < 16.", "10부터 15까지 — 몇 개?"],
+      "idea": "근호 부등식은 '제곱해서 범위로' — 경계(9, 16)의 포함 여부가 관건.",
+      "solve": "9 < x < 16 → x = 10, 11, 12, 13, 14, 15 → 6개.",
+      "remember": "부등호에 등호가 없으면 경계는 제외. 세기 전에 확인!",
+      "estimatedSec": 100,
+      "tags": ["제곱근범위", "개수세기"]
+    },
+    {
+      "id": "M3.ALG.FACT.B001",
+      "skill": "M3.ALG.FACT",
+      "level": 3,
+      "variant": "standard",
+      "stem": "x² + ax + 16 이 완전제곱식이 되도록 하는 상수 a의 값을 모두 고르면?",
+      "choices": [
+        { "text": "a = ±8", "error": null },
+        { "text": "a = 8", "error": "CONCEPT" },
+        { "text": "a = 4", "error": "CALCULATION" },
+        { "text": "a = ±4", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["완전제곱식 (x ± k)² = x² ± 2kx + k².", "k² = 16 → k = 4.", "a = ±2k."],
+      "idea": "완전제곱 조건: 가운데 계수 = ±2×(상수항의 제곱근). 음수 쪽을 잊지 말 것!",
+      "solve": "(x ± 4)² = x² ± 8x + 16 → a = ±8.",
+      "remember": "'모두 고르면'이 보이면 ± 두 경우를 의심하라.",
+      "estimatedSec": 90,
+      "tags": ["완전제곱식", "조건찾기"]
+    },
+    {
+      "id": "M3.ALG.FACT.B002",
+      "skill": "M3.ALG.FACT",
+      "level": 5,
+      "variant": "standard",
+      "stem": "x + y = 6, xy = 8 일 때, x² + y² 의 값은?",
+      "choices": [
+        { "text": "20", "error": null },
+        { "text": "28", "error": "CALCULATION" },
+        { "text": "36", "error": "CONCEPT" },
+        { "text": "52", "error": "SIGN" }
+      ],
+      "answerIndex": 0,
+      "hints": ["x² + y² 을 (x + y)² 으로 표현해봐요.", "(x + y)² = x² + 2xy + y².", "x² + y² = (x + y)² − 2xy."],
+      "idea": "합과 곱만으로 제곱합을 구하는 곱셈공식 변형 — 고교 과정까지 계속 쓰는 핵심 기술.",
+      "solve": "x² + y² = 6² − 2×8 = 36 − 16 = 20.",
+      "remember": "x²+y² = (x+y)² − 2xy. 변형 공식은 유도해보면 안 잊는다.",
+      "estimatedSec": 100,
+      "tags": ["곱셈공식변형", "합과곱"]
+    },
+    {
+      "id": "M3.ALG.QUAD.B001",
+      "skill": "M3.ALG.QUAD",
+      "level": 3,
+      "variant": "standard",
+      "stem": "이차방정식 x² − x − 6 = 0 의 두 근의 합은?",
+      "choices": [
+        { "text": "1", "error": null },
+        { "text": "−1", "error": "SIGN" },
+        { "text": "5", "error": "CALCULATION" },
+        { "text": "−6", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["인수분해: 곱이 −6, 합이 −1인 두 수는?", "(x − 3)(x + 2) = 0.", "근 3과 −2의 합은?"],
+      "idea": "근을 직접 구해 더한다 — (근과 계수의 관계를 배우면 한 번에 나오는 것도 예고!)",
+      "solve": "(x − 3)(x + 2) = 0 → x = 3 또는 −2 → 합 = 1.",
+      "remember": "두 근의 합은 x 계수의 부호 반대(−(−1)=1) — 검산에 활용!",
+      "estimatedSec": 90,
+      "tags": ["근의합", "인수분해"]
+    },
+    {
+      "id": "M3.ALG.QUAD.B002",
+      "skill": "M3.ALG.QUAD",
+      "level": 5,
+      "variant": "standard",
+      "stem": "둘레의 길이가 30cm이고 넓이가 54cm²인 직사각형이 있습니다. 긴 변의 길이는?",
+      "choices": [
+        { "text": "9cm", "error": null },
+        { "text": "6cm", "error": "INTERPRETATION" },
+        { "text": "7.5cm", "error": "CONCEPT" },
+        { "text": "12cm", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["가로를 x라 하면 세로는 15 − x (둘레의 절반이 15).", "x(15 − x) = 54.", "x² − 15x + 54 = 0 을 인수분해해요."],
+      "idea": "둘레·넓이 조건 → 이차방정식. 두 해가 모두 의미 있는 드문 경우(가로·세로 교환)!",
+      "solve": "x(15−x) = 54 → x² − 15x + 54 = 0 → (x−6)(x−9) = 0 → 변은 6과 9 → 긴 변 9cm.",
+      "remember": "두 해 6, 9가 모두 나오면 문제가 묻는 쪽(긴 변)을 고른다.",
+      "estimatedSec": 130,
+      "tags": ["도형활용", "이차방정식"]
+    },
+    {
+      "id": "M3.FUN.QUAD.B001",
+      "skill": "M3.FUN.QUAD",
+      "level": 3,
+      "variant": "standard",
+      "stem": "이차함수 y = x² − 4x + k 의 그래프의 꼭짓점이 x축 위에 있을 때, 상수 k의 값은?",
+      "choices": [
+        { "text": "4", "error": null },
+        { "text": "−4", "error": "SIGN" },
+        { "text": "2", "error": "CALCULATION" },
+        { "text": "16", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["완전제곱꼴로 바꿔요: y = (x − 2)² + (k − 4).", "꼭짓점의 y좌표는 k − 4.", "x축 위에 있다 = y좌표가 0."],
+      "idea": "'꼭짓점이 x축 위' = 꼭짓점 y좌표 0 — 조건을 좌표 언어로 번역하는 문제.",
+      "solve": "y = (x−2)² + k − 4 → k − 4 = 0 → k = 4.",
+      "remember": "x축에 접한다 = 꼭짓점이 x축 위 = 중근. 세 표현이 같은 뜻!",
+      "estimatedSec": 110,
+      "tags": ["꼭짓점조건", "완전제곱"]
+    },
+    {
+      "id": "M3.FUN.QUAD.B002",
+      "skill": "M3.FUN.QUAD",
+      "level": 5,
+      "variant": "standard",
+      "stem": "이차함수 y = −x² + 6x − 5 의 최댓값은?",
+      "choices": [
+        { "text": "4", "error": null },
+        { "text": "−4", "error": "SIGN" },
+        { "text": "3", "error": "INTERPRETATION" },
+        { "text": "5", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["a = −1 < 0 → 위로 볼록 → 최댓값이 존재해요.", "y = −(x² − 6x) − 5 = −(x − 3)² + 4.", "꼭짓점 (3, 4)."],
+      "idea": "음수 계수의 완전제곱 변형 — 부호를 밖으로 빼는 순간이 최대 고비.",
+      "solve": "y = −(x−3)² + 4 → 최댓값 4 (x = 3일 때).",
+      "remember": "최댓값은 y값! x값(3)을 답하는 함정에 주의.",
+      "estimatedSec": 120,
+      "tags": ["최댓값", "완전제곱변형"]
+    },
+    {
+      "id": "M3.GEO.TRIG.B001",
+      "skill": "M3.GEO.TRIG",
+      "level": 3,
+      "variant": "standard",
+      "stem": "∠A가 예각이고 sin A = 3/5 일 때, cos A 의 값은?",
+      "choices": [
+        { "text": "4/5", "error": null },
+        { "text": "3/5", "error": "CONCEPT" },
+        { "text": "5/4", "error": "FORMULA" },
+        { "text": "3/4", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["sin = 대변/빗변이니 대변 3, 빗변 5인 직각삼각형을 그려요.", "피타고라스로 밑변: √(25 − 9) = 4.", "cos = 밑변/빗변."],
+      "idea": "삼각비 하나가 주어지면 직각삼각형을 '복원'해 나머지를 모두 구할 수 있다.",
+      "solve": "밑변 = √(5² − 3²) = 4 → cos A = 4/5.",
+      "remember": "3-4-5 삼각형은 삼각비 문제의 단골 손님!",
+      "estimatedSec": 100,
+      "tags": ["삼각비관계", "피타고라스"]
+    },
+    {
+      "id": "M3.GEO.TRIG.B002",
+      "skill": "M3.GEO.TRIG",
+      "level": 5,
+      "variant": "standard",
+      "stem": "tan 30° × tan 60° 의 값은?",
+      "choices": [
+        { "text": "1", "error": null },
+        { "text": "√3", "error": "CALCULATION" },
+        { "text": "3", "error": "CONCEPT" },
+        { "text": "1/3", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["tan 30° = √3/3, tan 60° = √3.", "(√3/3) × √3 = ?", "√3 × √3 = 3."],
+      "idea": "30°와 60°는 서로 여각 — tan끼리 곱하면 1이 되는 아름다운 관계!",
+      "solve": "(√3/3) × √3 = 3/3 = 1.",
+      "remember": "tan A × tan(90°−A) = 1. 특수각으로 직접 확인해두면 평생 기억!",
+      "estimatedSec": 90,
+      "tags": ["특수각", "여각관계"]
+    },
+    {
+      "id": "M3.STA.STAT.B001",
+      "skill": "M3.STA.STAT",
+      "level": 4,
+      "variant": "standard",
+      "stem": "자료 3, 5, 7, 9, x 의 평균이 6일 때, 이 자료의 분산은?",
+      "choices": [
+        { "text": "4", "error": null },
+        { "text": "5", "error": "CALCULATION" },
+        { "text": "20", "error": "FORMULA" },
+        { "text": "2", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["평균 조건으로 x부터: (3+5+7+9+x)/5 = 6.", "x = 6. 편차: −3, −1, 1, 3, 0.", "편차 제곱의 합 ÷ 5."],
+      "idea": "미지값 결정 → 편차 → 분산. 통계 문제의 풀코스 구성.",
+      "solve": "x = 30 − 24 = 6. 분산 = (9+1+1+9+0)/5 = 20/5 = 4.",
+      "remember": "분산(4)과 편차제곱합(20), 표준편차(2)를 혼동하지 않기!",
+      "estimatedSec": 120,
+      "tags": ["분산", "미지값"]
+    },
+    {
+      "id": "M3.STA.STAT.B002",
+      "skill": "M3.STA.STAT",
+      "level": 2,
+      "variant": "standard",
+      "stem": "자료 2, 4, 4, 5, 7, 8, 8, 8 의 최빈값은?",
+      "choices": [
+        { "text": "8", "error": null },
+        { "text": "4", "error": "CALCULATION" },
+        { "text": "5.75", "error": "CONCEPT" },
+        { "text": "6", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["최빈값 = 가장 '자주' 나오는 값.", "각 값의 개수를 세어요.", "8이 세 번으로 가장 많아요."],
+      "idea": "평균·중앙값·최빈값은 서로 다른 대푯값 — '가장 많이'는 최빈값의 몫.",
+      "solve": "8이 3회로 최다 → 최빈값 8.",
+      "remember": "최빈값은 계산하지 않고 '센다'. 여러 개일 수도 있어요!",
+      "estimatedSec": 50,
+      "tags": ["최빈값", "대푯값"]
+    }
+  ]
+}

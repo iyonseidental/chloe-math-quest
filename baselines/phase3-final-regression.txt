@@ -1,0 +1,26 @@
+✅ test21-step0           13 checks passed — Step 0 OK
+✅ test21-mastery         28 checks passed — Step 2 (Mastery & Uncertainty) OK
+✅ test21-attribution     9 checks passed — Step 3 (Evidence Attribution) OK
+✅ test21-misconception   29 checks passed — Step 4 (Misconception FSM) OK
+✅ test21-rootcause       30 checks passed — Step 5 (Stability + Root Cause + Probe Selection) OK
+✅ test21-remediation     27 checks passed — Step 6 (Minimum-Dose Remediation) OK
+✅ test21-retention       32 checks passed — Step 7 (Long-Term State Machine + Retention) OK
+✅ test21-adaptive        20 checks passed — Step 8 (Adaptive Progression) OK
+✅ test21-calibration     13 checks passed — Step 9 (Calibration & Evaluation) OK
+✅ test21-session         13 checks passed — Step 10 (Session Orchestrator + Replay) OK
+✅ test21-replay-config   6 checks passed — Step 11c (Replay under a changed config) OK
+✅ test21-diagnostic      65 checks passed — Step 12 (Adaptive Diagnostic) OK
+✅ qa21                   🎉 QA Scenarios 1-20 — ALL PASS
+✅ simulate21             🎉 Synthetic Learners A-K — ALL PASS
+✅ test22-graph           238 checks passed — Phase 2 Step 7-10 (Full M1 Graph) OK
+✅ test22-m1full          67 checks passed — Phase 2 Step 11 (Full M1 dynamic regression) OK
+✅ test22-elite           36 checks passed — Phase 2 Step 19 (ELITE QA 1~10) OK
+✅ simulate22-elite       🎉 Synthetic Elite Learners L~R — ALL PASS
+✅ test23-levelwindow     11 checks passed — Phase 3 Step 1 (Pilot levelWindow migration) OK
+✅ test23-tagging         43 checks passed — Phase 3 Step 2 (Misconception tagging 13/13) OK
+✅ test23-borderline      20 checks passed — Phase 3 Step 3 (Borderline orthogonal probe) OK
+✅ test23-elite2          59 checks passed — Phase 3 Step 6-12 (Elite Depth Hardening) OK
+✅ test23-golden          21 checks passed — Phase 3 Step 14-16/20 (Golden Set + Growth) OK
+✅ test23-pilot           12 checks passed — Phase 3 Step 17-18 (Pilot instrumentation) OK
+
+ALL PASS — Phase 1+2(+3) regression green

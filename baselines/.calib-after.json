@@ -1,0 +1,86 @@
+{
+  "report": {
+    "calibrationError": 0.16356984247543133,
+    "brierScore": 0.1953594432949451,
+    "accuracyByBand": [
+      {
+        "band": "0-10%",
+        "meanPredicted": 0.07282552925472988,
+        "actualRate": 0.4444444444444444,
+        "n": 18
+      },
+      {
+        "band": "10-20%",
+        "meanPredicted": 0.16888305557738353,
+        "actualRate": 0.26272189349112424,
+        "n": 845
+      },
+      {
+        "band": "20-30%",
+        "meanPredicted": 0.2547011268693048,
+        "actualRate": 0.5358090185676393,
+        "n": 377
+      },
+      {
+        "band": "30-40%",
+        "meanPredicted": 0.3524420999366684,
+        "actualRate": 0.6209912536443148,
+        "n": 343
+      },
+      {
+        "band": "40-50%",
+        "meanPredicted": 0.43968101649243874,
+        "actualRate": 0.7065637065637066,
+        "n": 259
+      },
+      {
+        "band": "50-60%",
+        "meanPredicted": 0.559352545740421,
+        "actualRate": 0.775609756097561,
+        "n": 205
+      },
+      {
+        "band": "60-70%",
+        "meanPredicted": 0.6689157248960957,
+        "actualRate": 0.8526148969889065,
+        "n": 631
+      },
+      {
+        "band": "70-80%",
+        "meanPredicted": 0.7471092386664722,
+        "actualRate": 0.856953642384106,
+        "n": 755
+      },
+      {
+        "band": "80-90%",
+        "meanPredicted": 0.8454864994050239,
+        "actualRate": 0.9343065693430657,
+        "n": 274
+      },
+      {
+        "band": "90-100%",
+        "meanPredicted": 0.9420569417824253,
+        "actualRate": 0.9829059829059829,
+        "n": 117
+      }
+    ],
+    "retentionPredictionAccuracy": 0.7911763604783346,
+    "rootCauseHitRate": 0,
+    "probeYield": 0.1206896551724138,
+    "falseMasteryRate": 0.045454545454545456,
+    "falseWeaknessRate": 0,
+    "misconceptionPrecision": 1,
+    "misconceptionRecall": 0.037267080745341616,
+    "gapClosureSuccessRate": 0.8651685393258427,
+    "transferPredictiveValue": -0.13338426279602755,
+    "n": {
+      "predictions": 3824,
+      "probes": 116,
+      "rootCauseTrials": 2,
+      "misconceptionTrials": 161,
+      "remediationOutcomes": 89
+    }
+  },
+  "checksPassed": 47,
+  "checksFailed": 0
+}

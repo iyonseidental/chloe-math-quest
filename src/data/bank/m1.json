@@ -1,0 +1,289 @@
+{
+  "track": "M1",
+  "name": "중1 큐레이션 문제은행",
+  "schemaVersion": 1,
+  "updated": "2026-08-18",
+  "note": "시중 문제집·기출 유형을 참고해 창작한 검증 문제. 생성기가 다루지 않는 유형(대소비교, 역계산, 비례식, 소금물, 시계각 등) 중심.",
+  "questions": [
+    {
+      "id": "M1.NUM.INT.B001",
+      "skill": "M1.NUM.INT",
+      "level": 2,
+      "variant": "standard",
+      "stem": "다음 네 수 중 가장 큰 수는?\n−3, |−5|, 2, −(−4)",
+      "choices": [
+        { "text": "|−5|", "error": null },
+        { "text": "−(−4)", "error": "CONCEPT" },
+        { "text": "2", "error": "CONCEPT" },
+        { "text": "−3", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["절댓값 기호와 이중 부호를 먼저 계산해 보통의 수로 바꿔요.", "|−5| = 5, −(−4) = 4.", "5, 4, 2, −3 을 비교해요."],
+      "idea": "기호에 싸인 수는 먼저 '벗겨서' 비교한다.",
+      "solve": "|−5| = 5, −(−4) = 4 이므로 5 > 4 > 2 > −3. 가장 큰 수는 |−5|.",
+      "remember": "절댓값은 항상 0 이상 — 겉모습이 음수 같아도 벗겨보면 크다!",
+      "estimatedSec": 50,
+      "tags": ["대소비교", "절댓값"]
+    },
+    {
+      "id": "M1.NUM.INT.B002",
+      "skill": "M1.NUM.INT",
+      "level": 4,
+      "variant": "standard",
+      "stem": "다음을 계산하세요.\n(−1)^{100} − (−1)^{99}",
+      "choices": [
+        { "text": "2", "error": null },
+        { "text": "0", "error": "SIGN" },
+        { "text": "−2", "error": "SIGN" },
+        { "text": "1", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["(−1)의 거듭제곱은 지수의 짝·홀만 보면 돼요.", "(−1)^{100} = 1 (짝수), (−1)^{99} = −1 (홀수).", "1 − (−1) = ?"],
+      "idea": "(−1)ⁿ은 n이 짝수면 1, 홀수면 −1 — 규칙 하나로 큰 지수도 즉시 처리.",
+      "solve": "(−1)^{100} = 1, (−1)^{99} = −1 → 1 − (−1) = 2.",
+      "remember": "빼기 음수 = 더하기. 마지막 단계의 부호 처리가 승부처!",
+      "estimatedSec": 60,
+      "tags": ["거듭제곱", "부호규칙"]
+    },
+    {
+      "id": "M1.ALG.EXP.B001",
+      "skill": "M1.ALG.EXP",
+      "level": 2,
+      "variant": "standard",
+      "stem": "a = −2 일 때, −a² 의 값은?",
+      "choices": [
+        { "text": "−4", "error": null },
+        { "text": "4", "error": "SIGN" },
+        { "text": "−2", "error": "CONCEPT" },
+        { "text": "2", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["−a² 은 −(a²) 라는 뜻이에요. (−a)² 과 달라요!", "a² = (−2)² = 4.", "그 앞에 − 를 붙이면?"],
+      "idea": "−a²과 (−a)²의 구분 — 시험에 가장 많이 나오는 함정 중 하나예요.",
+      "solve": "a² = (−2)² = 4 이므로 −a² = −4.",
+      "remember": "제곱이 먼저, 앞의 −는 나중. −a² = −(a²).",
+      "estimatedSec": 45,
+      "tags": ["식의값", "부호함정"]
+    },
+    {
+      "id": "M1.ALG.EXP.B002",
+      "skill": "M1.ALG.EXP",
+      "level": 4,
+      "variant": "standard",
+      "stem": "어떤 식에서 3x − 5 를 빼야 할 것을 잘못하여 더했더니 2x + 4 가 되었습니다. 바르게 계산한 결과는?",
+      "choices": [
+        { "text": "−4x + 14", "error": null },
+        { "text": "−x + 9", "error": "CONCEPT" },
+        { "text": "−4x − 6", "error": "SIGN" },
+        { "text": "5x − 1", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["먼저 '어떤 식'을 찾아요.", "어떤 식 = (잘못된 결과) − (3x − 5) = 2x + 4 − 3x + 5.", "어떤 식 −x + 9 에서 다시 (3x − 5)를 빼요."],
+      "idea": "역계산 문제: 잘못한 과정을 거꾸로 되돌려 원래 식을 복원한 뒤, 바르게 다시 계산한다.",
+      "solve": "어떤 식 = 2x + 4 − (3x − 5) = −x + 9. 바른 계산 = −x + 9 − (3x − 5) = −4x + 14.",
+      "remember": "'잘못 계산' 문제는 2단계: ① 원래 식 복원 ② 바른 연산 다시 하기.",
+      "estimatedSec": 110,
+      "tags": ["역계산", "다항식"]
+    },
+    {
+      "id": "M1.ALG.EQ.B001",
+      "skill": "M1.ALG.EQ",
+      "level": 3,
+      "variant": "standard",
+      "stem": "비례식 (x + 2) : 3 = (2x − 1) : 4 를 만족하는 x의 값은?",
+      "choices": [
+        { "text": "x = 11/2", "error": null },
+        { "text": "x = 5/2", "error": "CALCULATION" },
+        { "text": "x = −11/2", "error": "SIGN" },
+        { "text": "x = 11", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["비례식은 '외항의 곱 = 내항의 곱'으로 방정식이 돼요.", "4(x + 2) = 3(2x − 1).", "4x + 8 = 6x − 3 을 풀어요."],
+      "idea": "비례식 → 방정식 변환 공식: a:b = c:d ⇔ ad = bc.",
+      "solve": "4(x+2) = 3(2x−1) → 4x + 8 = 6x − 3 → 11 = 2x → x = 11/2.",
+      "remember": "외항×외항 = 내항×내항. 괄호를 먼저 정확히 전개!",
+      "estimatedSec": 90,
+      "tags": ["비례식"]
+    },
+    {
+      "id": "M1.ALG.EQ.B002",
+      "skill": "M1.ALG.EQ",
+      "level": 5,
+      "variant": "standard",
+      "stem": "10%의 소금물 300g에 물을 더 넣어 6%의 소금물을 만들려고 합니다. 더 넣어야 하는 물의 양은?",
+      "choices": [
+        { "text": "200g", "error": null },
+        { "text": "150g", "error": "CALCULATION" },
+        { "text": "300g", "error": "CONCEPT" },
+        { "text": "100g", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["물을 부어도 변하지 않는 것은 무엇일까요?", "소금의 양 = 300 × 0.1 = 30g 은 그대로예요.", "30 = (300 + x) × 0.06 을 풀어요."],
+      "idea": "소금물 문제의 열쇠는 '변하지 않는 소금의 양'으로 등식 세우기.",
+      "solve": "소금 30g 불변. 30 = 0.06(300 + x) → 300 + x = 500 → x = 200g.",
+      "remember": "물 추가 = 소금 불변, 소금 추가 = 물 불변. 불변량을 찾으면 식이 보인다.",
+      "estimatedSec": 140,
+      "tags": ["소금물", "농도"]
+    },
+    {
+      "id": "M1.FUN.COORD.B001",
+      "skill": "M1.FUN.COORD",
+      "level": 2,
+      "variant": "standard",
+      "stem": "점 (a, b) 가 제2사분면 위의 점일 때, 점 (b, a) 는 몇 사분면 위의 점일까요?",
+      "choices": [
+        { "text": "제4사분면", "error": null },
+        { "text": "제2사분면", "error": "CONCEPT" },
+        { "text": "제1사분면", "error": "SIGN" },
+        { "text": "제3사분면", "error": "SIGN" }
+      ],
+      "answerIndex": 0,
+      "hints": ["제2사분면의 부호는 (−, +) 이에요.", "그러니까 a < 0, b > 0.", "(b, a) 는 (양수, 음수) — 어느 사분면?"],
+      "idea": "좌표를 바꿔치기하면 부호 순서도 바뀐다 — 부호 추론의 기본 문제.",
+      "solve": "a < 0, b > 0 이므로 (b, a) = (+, −) → 제4사분면.",
+      "remember": "사분면 문제는 구체적 수를 넣어 실험해도 좋아요. 예: a=−1, b=2.",
+      "estimatedSec": 60,
+      "tags": ["사분면", "부호추론"]
+    },
+    {
+      "id": "M1.FUN.COORD.B002",
+      "skill": "M1.FUN.COORD",
+      "level": 4,
+      "variant": "standard",
+      "stem": "세 점 A(1, 1), B(5, 1), C(3, 4) 를 꼭짓점으로 하는 삼각형의 넓이는?",
+      "choices": [
+        { "text": "6", "error": null },
+        { "text": "12", "error": "FORMULA" },
+        { "text": "4", "error": "CALCULATION" },
+        { "text": "8", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["A와 B는 y좌표가 같아요 — 밑변으로 쓰기 좋아요.", "밑변 AB = 5 − 1 = 4.", "높이 = C의 y좌표 − 밑변의 y좌표 = 4 − 1 = 3."],
+      "idea": "축과 평행한 변을 밑변으로 잡으면 좌표 삼각형 넓이가 한 번에 나온다.",
+      "solve": "밑변 4, 높이 3 → 넓이 = (1/2) × 4 × 3 = 6.",
+      "remember": "삼각형 넓이의 1/2 을 빼먹으면 두 배 함정에 걸려요!",
+      "estimatedSec": 90,
+      "tags": ["좌표도형", "넓이"]
+    },
+    {
+      "id": "M1.FUN.PROP.B001",
+      "skill": "M1.FUN.PROP",
+      "level": 3,
+      "variant": "standard",
+      "stem": "y가 x에 반비례하고 x = 4 일 때 y = −3 입니다. x = −2 일 때 y의 값은?",
+      "choices": [
+        { "text": "6", "error": null },
+        { "text": "−6", "error": "SIGN" },
+        { "text": "−24", "error": "CONCEPT" },
+        { "text": "3/2", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["반비례는 y = a/x. 먼저 a를 구해요.", "a = x × y = 4 × (−3) = −12.", "y = −12 ÷ (−2) = ?"],
+      "idea": "반비례 상수는 곱(xy)으로 — 음수가 섞여도 절차는 같다.",
+      "solve": "a = 4 × (−3) = −12 → y = −12/x → x = −2 에서 y = −12 ÷ (−2) = 6.",
+      "remember": "음수 ÷ 음수 = 양수. 반비례에서도 부호 규칙은 그대로!",
+      "estimatedSec": 75,
+      "tags": ["반비례", "음수"]
+    },
+    {
+      "id": "M1.FUN.PROP.B002",
+      "skill": "M1.FUN.PROP",
+      "level": 5,
+      "variant": "standard",
+      "stem": "정비례 관계 y = ax 의 그래프가 점 (2, 3) 을 지납니다. 이 그래프가 점 (k, −9) 도 지날 때, k의 값은?",
+      "choices": [
+        { "text": "−6", "error": null },
+        { "text": "6", "error": "SIGN" },
+        { "text": "−3", "error": "CALCULATION" },
+        { "text": "−18", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["(2, 3) 을 대입해 a부터 구해요.", "a = 3/2 → y = (3/2)x.", "−9 = (3/2)k 를 풀어요."],
+      "idea": "그래프 위의 점 = 대입하면 성립. 두 점을 차례로 사용하는 2단계 문제.",
+      "solve": "a = 3/2. −9 = (3/2)k → k = −9 × (2/3) = −6.",
+      "remember": "분수 계수 방정식은 역수를 곱해 한 번에 풀기.",
+      "estimatedSec": 100,
+      "tags": ["정비례", "그래프위의점"]
+    },
+    {
+      "id": "M1.GEO.BASIC.B001",
+      "skill": "M1.GEO.BASIC",
+      "level": 3,
+      "variant": "standard",
+      "stem": "시계가 4시 30분을 가리킬 때, 시침과 분침이 이루는 작은 쪽 각의 크기는?",
+      "choices": [
+        { "text": "45°", "error": null },
+        { "text": "30°", "error": "CONCEPT" },
+        { "text": "60°", "error": "CALCULATION" },
+        { "text": "15°", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["분침: 30분이면 정확히 6을 가리켜요 (180°).", "시침은 4와 5의 '한가운데' — 4시에서 15° 더 간 135°.", "180° − 135° = ?"],
+      "idea": "시침도 움직인다! 30분이면 시침은 한 칸(30°)의 절반을 간다.",
+      "solve": "분침 180°, 시침 4×30 + 15 = 135° → 차 = 45°.",
+      "remember": "시침은 1분에 0.5°씩 움직여요. '시침 고정' 함정에 주의!",
+      "estimatedSec": 100,
+      "tags": ["시계각", "실생활"]
+    },
+    {
+      "id": "M1.GEO.BASIC.B002",
+      "skill": "M1.GEO.BASIC",
+      "level": 5,
+      "variant": "standard",
+      "stem": "내각의 크기의 합이 1440°인 다각형의 대각선의 개수는?",
+      "choices": [
+        { "text": "35개", "error": null },
+        { "text": "45개", "error": "FORMULA" },
+        { "text": "70개", "error": "CALCULATION" },
+        { "text": "27개", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["먼저 몇각형인지 찾아요: 180(n−2) = 1440.", "n = 10 (십각형).", "대각선 개수 = n(n−3)/2."],
+      "idea": "두 공식의 연결: 내각의 합으로 n을 찾고, n으로 대각선을 센다.",
+      "solve": "180(n−2) = 1440 → n = 10. 대각선 = 10×7/2 = 35개.",
+      "remember": "대각선 공식의 (n−3): 자기 자신과 이웃 2개는 연결 불가라서!",
+      "estimatedSec": 120,
+      "tags": ["다각형", "대각선", "복합"]
+    },
+    {
+      "id": "M1.STA.DATA.B001",
+      "skill": "M1.STA.DATA",
+      "level": 2,
+      "variant": "standard",
+      "stem": "채림이의 수학 시험 5회 평균은 82점입니다. 6번째 시험 후 평균이 84점이 되었다면, 6번째 시험 점수는?",
+      "choices": [
+        { "text": "94점", "error": null },
+        { "text": "86점", "error": "CALCULATION" },
+        { "text": "84점", "error": "CONCEPT" },
+        { "text": "90점", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["평균 × 횟수 = 총점으로 바꿔요.", "5회 총점 = 410, 6회 총점 = 504.", "6번째 점수 = 504 − 410."],
+      "idea": "평균 상승 문제 = 총점 비교. 평균이 2점 오르려면 새 점수는 평균보다 훨씬 높아야 한다.",
+      "solve": "84×6 − 82×5 = 504 − 410 = 94점.",
+      "remember": "새 평균만큼(84)만 받으면 평균은 안 오른다 — 직관 검증!",
+      "estimatedSec": 90,
+      "tags": ["평균", "역산"]
+    },
+    {
+      "id": "M1.STA.DATA.B002",
+      "skill": "M1.STA.DATA",
+      "level": 4,
+      "variant": "standard",
+      "stem": "전체 학생이 40명인 학급에서 어느 계급의 상대도수가 0.35일 때, 이 계급의 도수는?",
+      "choices": [
+        { "text": "14명", "error": null },
+        { "text": "35명", "error": "CONCEPT" },
+        { "text": "12명", "error": "CALCULATION" },
+        { "text": "16명", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["상대도수 = 도수 ÷ 전체.", "거꾸로: 도수 = 전체 × 상대도수.", "40 × 0.35 = ?"],
+      "idea": "상대도수 공식을 거꾸로 쓰는 문제 — 비율에서 개수로 돌아간다.",
+      "solve": "도수 = 40 × 0.35 = 14명.",
+      "remember": "0.35 = 35%. 소수·백분율·분수를 자유롭게 오가면 실수가 준다.",
+      "estimatedSec": 60,
+      "tags": ["상대도수", "역산"]
+    }
+  ]
+}

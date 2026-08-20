@@ -1,0 +1,520 @@
+{
+  "frozenAt": "2026-08-20T02:28:07.908Z",
+  "phase": "phase2",
+  "versions": {
+    "config": "2.2.0",
+    "masteryModel": "2.2.0-ability-beta",
+    "curriculum": "2.2.0-m1full",
+    "knowledgeGraph": "2.2.0-m1full35"
+  },
+  "knowledgeGraph": {
+    "skillCount": 35,
+    "edgeCount": 56,
+    "edgeStrengths": {
+      "REQUIRED": 39,
+      "STRONGLY_SUPPORTIVE": 10,
+      "SUPPORTIVE": 7
+    },
+    "skills": [
+      "M1.NUM.SIGN.01",
+      "M1.NUM.SIGN.02",
+      "M1.NUM.FRAC.01",
+      "M1.ALG.EXP.01",
+      "M1.ALG.EXP.02",
+      "M1.ALG.EQ.01",
+      "M1.ALG.EQ.02",
+      "M1.ALG.EQ.03",
+      "M1.FUN.COORD.01",
+      "M1.FUN.COORD.02",
+      "M1.NUM.POW.01",
+      "M1.NUM.ABS.01",
+      "M1.ALG.VAL.01",
+      "M1.ALG.VAL.02",
+      "M1.ALG.PAT.01",
+      "M1.ALG.EQ.AX.01",
+      "M1.ALG.EQ.BOTH.01",
+      "M1.FUN.SYM.01",
+      "M1.FUN.AREA.01",
+      "M1.FUN.QSGN.01",
+      "M1.FUN.PROP.01",
+      "M1.FUN.PROP.02",
+      "M1.FUN.PROP.03",
+      "M1.FUN.PROP.04",
+      "M1.FUN.PROP.05",
+      "M1.GEO.ANG.01",
+      "M1.GEO.ANG.02",
+      "M1.GEO.CLOCK.01",
+      "M1.GEO.POLY.01",
+      "M1.GEO.POLY.02",
+      "M1.STA.AVG.01",
+      "M1.STA.AVG.02",
+      "M1.STA.REL.01",
+      "M1.STA.REL.02",
+      "M1.STA.AVG.03"
+    ]
+  },
+  "misconceptionLibrary": {
+    "total": 13,
+    "tagged": 6,
+    "ids": [
+      "MIS.SIGN.NEGSQ",
+      "MIS.EQ.MOVE",
+      "MIS.FRAC.ADDDEN",
+      "MIS.EXP.DISTR",
+      "MIS.EQ.WORDDIR",
+      "MIS.COORD.ORDER",
+      "MIS.VAL.NEGSQ",
+      "MIS.ABS.DROP",
+      "MIS.PROP.INV",
+      "MIS.REL.FLIP",
+      "MIS.AVG.COUNT",
+      "MIS.GEO.POLYN",
+      "MIS.CLOCK.HOUR"
+    ]
+  },
+  "eliteBank": {
+    "mainProblems": 15,
+    "followUps": 16,
+    "modes": {
+      "NON_ROUTINE": 3,
+      "MULTI_SKILL": 2,
+      "REVERSE": 2,
+      "GENERALIZATION": 2,
+      "ERROR_ANALYSIS": 2,
+      "MULTIPLE_SOLUTION": 2,
+      "APPLICATION": 1,
+      "PROOF": 1
+    }
+  },
+  "configSnapshot": {
+    "prior": {
+      "alpha": 1,
+      "beta": 3
+    },
+    "evidence": {
+      "correctBase": [
+        0.67,
+        0.861,
+        1.105,
+        1.492,
+        2.117
+      ],
+      "wrongBase": [
+        1.492,
+        1.161,
+        0.905,
+        0.67,
+        0.472
+      ],
+      "hintFactor": [
+        1,
+        0.55,
+        0.3,
+        0.12
+      ],
+      "retryFactor": 0.5,
+      "guessFactor": 0.35,
+      "guessSpeedRatio": 0.2,
+      "diversityFactor": 0.5,
+      "diversityStreakThreshold": 4,
+      "transferBonus": 1.5,
+      "retentionPassBonus": 1.2,
+      "transferFailPenalty": 1.2,
+      "retentionFailPenalty": 2,
+      "singleAttemptCap": 2.22,
+      "overReachDamping": 0.7,
+      "errorTypeWrongFactor": {
+        "CARELESS_ERROR": 0.35,
+        "GUESSING": 0.6,
+        "TIME_PRESSURE": 0.5,
+        "CONCEPT_GAP": 1,
+        "PREREQUISITE_GAP": 1,
+        "SIGN_ERROR": 1,
+        "CALCULATION_ERROR": 1,
+        "FORMULA_ERROR": 1,
+        "READING_ERROR": 1,
+        "INTERPRETATION_ERROR": 1,
+        "STRATEGY_ERROR": 1,
+        "LOGIC_ERROR": 1,
+        "DIAGRAM_ERROR": 1,
+        "UNKNOWN": 1
+      }
+    },
+    "attribution": {
+      "correctSecondaryFactor": 0.15,
+      "wrongPrimaryFactorWhenSecondaryIsRoot": 0.2,
+      "carelessSecondaryFactor": 0
+    },
+    "decay": {
+      "graceDays": 14,
+      "dailyDecayFactor": 0.995
+    },
+    "confidenceBands": {
+      "veryLow": 3,
+      "low": 8,
+      "medium": 20,
+      "high": 45
+    },
+    "confidenceDowngradeUncertainty": 0.12,
+    "stability": {
+      "threshold": 0.75,
+      "unknownEvidenceThreshold": 3,
+      "minEvidenceForSkip": 8,
+      "retReliabilityDefault": 0.85,
+      "recencyGraceDays": 14,
+      "recencyDailyFactor": 0.99,
+      "errorPenaltyPerRecentWrong": 0.15,
+      "errorPenaltyCap": 0.4,
+      "confidencePenaltyPerU": 1.5,
+      "confidencePenaltyCap": 0.4
+    },
+    "gate": {
+      "masteryThreshold": 0.85,
+      "independentRateThreshold": 0.8,
+      "independentWindow": 8,
+      "minEffectiveEvidence": 10,
+      "minConfidenceRank": 2
+    },
+    "confidenceOrder": [
+      "VERY_LOW",
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "VERY_HIGH"
+    ],
+    "retentionIntervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30
+    ],
+    "retentionStageResultState": [
+      "EARLY_MASTERY",
+      "MASTERED",
+      "MASTERED",
+      "STABLE_MASTERY",
+      "STABLE_MASTERY"
+    ],
+    "misconception": {
+      "strongTriggerScore": 1,
+      "weakTriggerScore": 0.5,
+      "cleanAnswerDecay": 0.3,
+      "suspectThreshold": 1,
+      "confirmProblemCount": 2,
+      "confirmPassToClear": true,
+      "activeMasteryCap": 0.6,
+      "clearedRelapseScore": 0.3,
+      "taggedTriggerScore": {
+        "HIGH": 1.4,
+        "MEDIUM": 1,
+        "LOW": 0.6
+      },
+      "policy": "rolling",
+      "rolling": {
+        "minOpportunities": 5,
+        "activeRate": 0.6,
+        "clearRate": 0.35,
+        "fastPathWindow": 5,
+        "fastPathMatches": 4,
+        "mediumWeight": 0.25
+      }
+    },
+    "remediation": {
+      "maxStageFailures": 2,
+      "foundationTarget": 2,
+      "maxTransferRestarts": 2,
+      "maxTreatmentAttempts": 22
+    },
+    "rootCause": {
+      "maxDepth": 4,
+      "maxProbePerCase": 5,
+      "maxConsecutiveProbes": 3,
+      "probeDifficulty": 3,
+      "surprisingFailureConfirmExtra": 1
+    },
+    "probePriority": {
+      "specificityConfirm": 1,
+      "specificityNarrow": 0.7,
+      "specificityShared": 0.5,
+      "uncertaintyBaseline": 0.5
+    },
+    "difficulty": {
+      "minSampleSize": 50,
+      "levelOffsets": [
+        -0.8,
+        -0.3,
+        0.2,
+        0.8,
+        1.5
+      ],
+      "empiricalBlendConfidenceThreshold": 0.7,
+      "residualToLevel": 5
+    },
+    "session": {
+      "maxDiagnosticShare": 0.3
+    },
+    "diagnostic": {
+      "budget": 32,
+      "inferredSeedAlpha": 1.8,
+      "inferredSeedBeta": 0.6
+    },
+    "adaptive": {
+      "forgettingRiskPerOverdueDay": 0.15,
+      "forgettingRiskCap": 2.5,
+      "curriculumImportanceDefault": 1,
+      "errorFrequencyWeight": 0.25,
+      "prereqImportanceWeight": 0.2,
+      "opportunityBoost": {
+        "REMEDIATION": 2,
+        "WEAKENED": 1.6,
+        "REVIEW_DUE": 1.5,
+        "PRACTICING": 1.2,
+        "LEARNING": 1.1,
+        "PROVISIONAL": 0.8,
+        "EARLY_MASTERY": 0.6,
+        "MASTERED": 0.35,
+        "STABLE_MASTERY": 0.2,
+        "EXPOSED": 1.3,
+        "UNSEEN": 1.4
+      },
+      "diversityRepeatPenalty": 0.5,
+      "diversityStreakPenalty": 0.3,
+      "fastTrackStreak": 3,
+      "fastTrackMinP": 0.8,
+      "frustrationStreak": 3,
+      "abandonedCooldownFactor": 0.15,
+      "abandonedCooldownDays": 1
+    },
+    "elite": {
+      "prior": {
+        "alpha": 1,
+        "beta": 3
+      },
+      "mainCorrect": 1,
+      "mainWrong": 0.8,
+      "followUpCorrect": 1.2,
+      "followUpWrong": 0.9,
+      "hintEvidenceDiscount": 0.75,
+      "knowledgeAdequateP": 0.6,
+      "overloadTimeRatio": 2.5,
+      "eliteReadyAvgP": 0.72,
+      "eliteReadyGated": 2,
+      "advancedReadyAvgP": 0.55,
+      "integrationWeight": 0.25,
+      "eliteDifficultyDrag": 0.85,
+      "flowZone": [
+        0.4,
+        0.7
+      ],
+      "baseShare": 0.15,
+      "maxShare": 0.35,
+      "gapBoost": 0.6,
+      "struggleWindowSec": 90,
+      "strategyTraceCap": 200
+    },
+    "xp": {
+      "correct": 10,
+      "advancedCorrect": 20,
+      "remediationRetry": 30,
+      "transferSuccess": 40,
+      "retentionSuccess": 40,
+      "skillMastered": 100,
+      "gapPermanentlyFixed": 120
+    }
+  },
+  "suites": {
+    "test21-step0": {
+      "pass": true,
+      "summary": "13 checks passed — Step 0 OK"
+    },
+    "test21-mastery": {
+      "pass": true,
+      "summary": "28 checks passed — Step 2 (Mastery & Uncertainty) OK"
+    },
+    "test21-attribution": {
+      "pass": true,
+      "summary": "9 checks passed — Step 3 (Evidence Attribution) OK"
+    },
+    "test21-misconception": {
+      "pass": true,
+      "summary": "29 checks passed — Step 4 (Misconception FSM) OK"
+    },
+    "test21-rootcause": {
+      "pass": true,
+      "summary": "29 checks passed — Step 5 (Stability + Root Cause + Probe Selection) OK"
+    },
+    "test21-remediation": {
+      "pass": true,
+      "summary": "27 checks passed — Step 6 (Minimum-Dose Remediation) OK"
+    },
+    "test21-retention": {
+      "pass": true,
+      "summary": "32 checks passed — Step 7 (Long-Term State Machine + Retention) OK"
+    },
+    "test21-adaptive": {
+      "pass": true,
+      "summary": "20 checks passed — Step 8 (Adaptive Progression) OK"
+    },
+    "test21-calibration": {
+      "pass": true,
+      "summary": "13 checks passed — Step 9 (Calibration & Evaluation) OK"
+    },
+    "test21-session": {
+      "pass": true,
+      "summary": "13 checks passed — Step 10 (Session Orchestrator + Replay) OK"
+    },
+    "test21-replay-config": {
+      "pass": true,
+      "summary": "6 checks passed — Step 11c (Replay under a changed config) OK"
+    },
+    "test21-diagnostic": {
+      "pass": true,
+      "summary": "65 checks passed — Step 12 (Adaptive Diagnostic) OK"
+    },
+    "qa21": {
+      "pass": true,
+      "summary": "🎉 QA Scenarios 1-20 — ALL PASS"
+    },
+    "simulate21": {
+      "pass": true,
+      "summary": "🎉 Synthetic Learners A-K — ALL PASS"
+    }
+  },
+  "phase2Suites": {
+    "test22-graph": {
+      "pass": true,
+      "summary": "228 checks passed — Phase 2 Step 7-10 (Full M1 Graph) OK"
+    },
+    "test22-m1full": {
+      "pass": true,
+      "summary": "67 checks passed — Phase 2 Step 11 (Full M1 dynamic regression) OK"
+    },
+    "test22-elite": {
+      "pass": true,
+      "summary": "36 checks passed — Phase 2 Step 19 (ELITE QA 1~10) OK"
+    },
+    "simulate22-elite": {
+      "pass": true,
+      "summary": "🎉 Synthetic Elite Learners L~R — ALL PASS"
+    }
+  },
+  "calibration": {
+    "calibrationError": 0.21680075426466924,
+    "brierScore": 0.23041469393250535,
+    "accuracyByBand": [
+      {
+        "band": "0-10%",
+        "meanPredicted": 0.08051497527494778,
+        "actualRate": 0.42105263157894735,
+        "n": 19
+      },
+      {
+        "band": "10-20%",
+        "meanPredicted": 0.15337619897760885,
+        "actualRate": 0.24509803921568626,
+        "n": 102
+      },
+      {
+        "band": "20-30%",
+        "meanPredicted": 0.2504102780104215,
+        "actualRate": 0.42191780821917807,
+        "n": 365
+      },
+      {
+        "band": "30-40%",
+        "meanPredicted": 0.34046317194449527,
+        "actualRate": 0.6932153392330384,
+        "n": 678
+      },
+      {
+        "band": "40-50%",
+        "meanPredicted": 0.45152810256756887,
+        "actualRate": 0.7272727272727273,
+        "n": 682
+      },
+      {
+        "band": "50-60%",
+        "meanPredicted": 0.5507117422392985,
+        "actualRate": 0.7792998477929984,
+        "n": 657
+      },
+      {
+        "band": "60-70%",
+        "meanPredicted": 0.6479229007407777,
+        "actualRate": 0.8533834586466166,
+        "n": 532
+      },
+      {
+        "band": "70-80%",
+        "meanPredicted": 0.7489069252157062,
+        "actualRate": 0.8246013667425968,
+        "n": 439
+      },
+      {
+        "band": "80-90%",
+        "meanPredicted": 0.8477501884149465,
+        "actualRate": 0.9086021505376344,
+        "n": 186
+      },
+      {
+        "band": "90-100%",
+        "meanPredicted": 0.9326188404924777,
+        "actualRate": 0.9789473684210527,
+        "n": 95
+      }
+    ],
+    "retentionPredictionAccuracy": 0.7424453690190579,
+    "rootCauseHitRate": 0.07692307692307693,
+    "probeYield": 0.2474747474747475,
+    "falseMasteryRate": 0.03125,
+    "falseWeaknessRate": 0,
+    "misconceptionPrecision": 1,
+    "misconceptionRecall": 0.029940119760479042,
+    "gapClosureSuccessRate": 0.896,
+    "transferPredictiveValue": -0.1883495145631069,
+    "n": {
+      "predictions": 3755,
+      "probes": 198,
+      "rootCauseTrials": 13,
+      "misconceptionTrials": 167,
+      "remediationOutcomes": 125
+    }
+  },
+  "phase2Metrics": {
+    "calibrationErrorValidation": {
+      "before21": 0.123,
+      "after22": 0.087
+    },
+    "brierAtoK": {
+      "before21": 0.219,
+      "after22": 0.195
+    },
+    "falseMasteryAtoK": {
+      "before21": 0.125,
+      "after22": 0.045
+    },
+    "misconceptionPR_validation": {
+      "before21": {
+        "p": 0.618,
+        "r": 0.7
+      },
+      "after22": {
+        "p": 0.867,
+        "r": 0.867
+      }
+    },
+    "rootCauseBenchmark": {
+      "hit": 0.736,
+      "probeYield": 0.434,
+      "probeDifficulty": 3,
+      "trialsPerConfig": 276
+    },
+    "transferDelta_validation": {
+      "near": 0.099,
+      "far": 0.079,
+      "delayed": 0.094
+    },
+    "totalAssertions": 740
+  }
+}

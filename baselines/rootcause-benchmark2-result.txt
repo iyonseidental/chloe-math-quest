@@ -1,0 +1,40 @@
+
+=== 신규 6유형 — BEFORE (2.2 동작, 직교 방어 OFF) ===
+  borderline-lucky         | target귀결:27  미확정:1  오귀속:3  HIT:17  (n=48)
+  two-borderline           | HIT:32  target귀결:11  미확정:3  오귀속:2  (n=48)
+  cross-unit-micro         | HIT:7  target귀결:17  (n=24)
+  mis-in-distant-prereq    | target귀결:9  오귀속:1  HIT:2  (n=12)
+  strong-careless-probe    | 오귀속:28  HIT:20  (n=48)
+  unknown-lucky            | 오귀속:5  target귀결:18  HIT:25  (n=48)
+  KPI: Hit=0.452  WrongAttr=0.171  BroadRemediation=0.174 (39/224)
+       Probes avg=2.10 median=2  Yield=0.380  (trials=228)
+
+=== 신규 6유형 — AFTER (2.3, 직교 방어 ON) ===
+  borderline-lucky         | target귀결:9  HIT:30  오귀속:4  미확정:5  (n=48)
+  two-borderline           | HIT:27  미확정:4  오귀속:8  target귀결:9  (n=48)
+  cross-unit-micro         | HIT:12  target귀결:12  (n=24)
+  mis-in-distant-prereq    | target귀결:4  오귀속:2  미확정:6  (n=12)
+  strong-careless-probe    | 오귀속:28  HIT:20  (n=48)
+  unknown-lucky            | 오귀속:11  HIT:32  target귀결:5  (n=48)
+  KPI: Hit=0.531  WrongAttr=0.232  BroadRemediation=0.249 (53/213)
+       Probes avg=2.93 median=3  Yield=0.370  (trials=228)
+
+=== 기존 9유형 — 2.3 전체 구성 ===
+  single-gap               | HIT:40  오귀속:7  target귀결:1  (n=48)
+  two-competing            | 오귀속:10  HIT:36  미확정:2  (n=48)
+  old-forgotten            | target귀결:8  HIT:29  오귀속:11  (n=48)
+  current-concept          | HIT:48  (n=48)
+  careless-masquerade      | no-case(정답):26  target귀결(차선):22  (n=48)
+  mis-in-prereq            | 오귀속:8  HIT:35  target귀결:5  (n=48)
+  unknown-skill            | target귀결:1  HIT:40  오귀속:7  (n=48)
+  accidental-probe-fail    | HIT:40  오귀속:8  (n=48)
+  cross-unit               | target귀결:12  HIT:12  (n=24)
+  KPI: Hit=0.778  WrongAttr=0.125  BroadRemediation=0.129 (49/380)
+       Probes avg=2.23 median=2  Yield=0.393  (trials=408)
+
+=== 결론 ===
+신규 유형 Hit: 0.452 → 0.531 (직교 방어 효과)
+신규 유형 WrongAttr: 0.171 → 0.232
+신규 유형 BroadRemediation: 0.174 → 0.249
+프로브 비용(중앙값): 2 → 3 (부담 상한 유지 확인)
+기존 9유형 Hit(2.3): 0.778 (2.2 baseline: 0.736)

@@ -1,0 +1,229 @@
+{
+  "track": "M2",
+  "name": "중2 큐레이션 문제은행",
+  "schemaVersion": 1,
+  "updated": "2026-08-18",
+  "note": "시중 문제집·기출 유형을 참고해 창작한 검증 문제.",
+  "questions": [
+    {
+      "id": "M2.ALG.MONO.B001",
+      "skill": "M2.ALG.MONO",
+      "level": 3,
+      "variant": "standard",
+      "stem": "다음을 간단히 하세요.\n(−3x²y)² ÷ 9x³y²",
+      "choices": [
+        { "text": "x", "error": null },
+        { "text": "−x", "error": "SIGN" },
+        { "text": "x²", "error": "CALCULATION" },
+        { "text": "9x", "error": "CONCEPT" }
+      ],
+      "answerIndex": 0,
+      "hints": ["괄호의 제곱부터: 계수와 각 문자를 모두 제곱해요.", "(−3x²y)² = 9x⁴y².", "9x⁴y² ÷ 9x³y² 에서 지수법칙으로 나눠요."],
+      "idea": "거듭제곱 → 나눗셈 순서. 음수의 짝수 제곱은 양수가 된다.",
+      "solve": "(−3x²y)² = 9x⁴y² → 9x⁴y² ÷ 9x³y² = x.",
+      "remember": "괄호 전체의 제곱 = 안의 '모든' 인수를 제곱. 계수 −3도 예외 없음!",
+      "estimatedSec": 90,
+      "tags": ["지수법칙", "단항식나눗셈"]
+    },
+    {
+      "id": "M2.ALG.MONO.B002",
+      "skill": "M2.ALG.MONO",
+      "level": 5,
+      "variant": "standard",
+      "stem": "2^{x} = A 라 할 때, 8^{x} 을 A를 사용하여 나타내면?",
+      "choices": [
+        { "text": "A³", "error": null },
+        { "text": "3A", "error": "CONCEPT" },
+        { "text": "A + 3", "error": "CONCEPT" },
+        { "text": "8A", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["8을 2의 거듭제곱으로 바꿔요.", "8 = 2³ 이므로 8^{x} = (2³)^{x} = 2^{3x}.", "2^{3x} = (2^{x})³."],
+      "idea": "밑을 통일하면 지수법칙이 문자 치환으로 이어진다 — 고등 지수함수의 예고편.",
+      "solve": "8^{x} = (2³)^{x} = 2^{3x} = (2^{x})³ = A³.",
+      "remember": "치환 문제의 순서: 밑 통일 → 지수 정리 → 문자로 바꾸기.",
+      "estimatedSec": 110,
+      "tags": ["치환", "지수법칙심화"]
+    },
+    {
+      "id": "M2.ALG.INEQ.B001",
+      "skill": "M2.ALG.INEQ",
+      "level": 3,
+      "variant": "standard",
+      "stem": "x가 자연수일 때, 부등식 3x − 2 < 10 을 만족하는 x의 개수는?",
+      "choices": [
+        { "text": "3개", "error": null },
+        { "text": "4개", "error": "INTERPRETATION" },
+        { "text": "2개", "error": "CALCULATION" },
+        { "text": "5개", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["먼저 부등식을 풀어요.", "3x < 12 → x < 4.", "x < 4 인 '자연수'는 몇 개?"],
+      "idea": "해 구하기 + 조건(자연수) 해석 — 경계값 포함 여부가 승부처.",
+      "solve": "x < 4 → 자연수 해는 1, 2, 3 → 3개. (4는 포함되지 않음!)",
+      "remember": "< 와 ≤ 의 차이가 개수를 바꾼다. 경계값을 반드시 확인!",
+      "estimatedSec": 80,
+      "tags": ["자연수해", "경계값"]
+    },
+    {
+      "id": "M2.ALG.INEQ.B002",
+      "skill": "M2.ALG.INEQ",
+      "level": 5,
+      "variant": "standard",
+      "stem": "연속하는 세 자연수의 합이 48보다 작을 때, 이런 세 자연수 중 가장 큰 경우의 최댓값(세 수 중 가장 큰 수)은?",
+      "choices": [
+        { "text": "16", "error": null },
+        { "text": "15", "error": "INTERPRETATION" },
+        { "text": "17", "error": "CALCULATION" },
+        { "text": "14", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["가운데 수를 x로 놓으면 세 수는 x−1, x, x+1.", "3x < 48 → x < 16.", "가운데 수 최대 15 → 세 수는 14, 15, 16."],
+      "idea": "연속수 + 부등식 + '최댓값 해석'의 3단 결합 — 마지막 해석까지 긴장을 유지!",
+      "solve": "3x < 48 → x < 16 → 최대 x = 15 → 세 수 14, 15, 16 → 가장 큰 수 16.",
+      "remember": "묻는 것이 x인지, 세 수 중 최대인지 — 마지막 줄을 다시 읽자.",
+      "estimatedSec": 120,
+      "tags": ["연속수", "활용"]
+    },
+    {
+      "id": "M2.ALG.SYS.B001",
+      "skill": "M2.ALG.SYS",
+      "level": 4,
+      "variant": "standard",
+      "stem": "x : y = 2 : 3 이고 x + y = 15 일 때, y − x 의 값은?",
+      "choices": [
+        { "text": "3", "error": null },
+        { "text": "5", "error": "CALCULATION" },
+        { "text": "9", "error": "INTERPRETATION" },
+        { "text": "6", "error": "INTERPRETATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["비가 2:3이면 x = 2k, y = 3k로 놓을 수 있어요.", "2k + 3k = 15 → k = 3.", "x = 6, y = 9 → y − x = ?"],
+      "idea": "비례 조건은 'k 배수'로 치환하면 연립방정식이 한 문자 방정식으로 줄어든다.",
+      "solve": "x = 2k, y = 3k → 5k = 15 → k = 3 → x = 6, y = 9 → y − x = 3.",
+      "remember": "a : b 조건 = (a k, b k) 치환. 비례식의 만능 도구!",
+      "estimatedSec": 100,
+      "tags": ["비례치환", "연립"]
+    },
+    {
+      "id": "M2.FUN.LINEAR.B001",
+      "skill": "M2.FUN.LINEAR",
+      "level": 3,
+      "variant": "standard",
+      "stem": "일차함수 y = ax + b 의 그래프가 두 점 (1, 3), (3, 7) 을 지날 때, a + b 의 값은?",
+      "choices": [
+        { "text": "3", "error": null },
+        { "text": "2", "error": "INTERPRETATION" },
+        { "text": "1", "error": "INTERPRETATION" },
+        { "text": "5", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["기울기 a = (7−3)/(3−1).", "a = 2. 이제 (1, 3) 대입: 3 = 2×1 + b.", "b = 1 → a + b = ?"],
+      "idea": "두 점 → 기울기 → 절편 → 조합값. 일차함수 결정의 표준 절차.",
+      "solve": "a = 4/2 = 2, b = 3 − 2 = 1 → a + b = 3.",
+      "remember": "a와 b를 각각 구한 뒤 '묻는 조합'을 계산 — a만 답하면 함정!",
+      "estimatedSec": 100,
+      "tags": ["함수결정", "두점"]
+    },
+    {
+      "id": "M2.FUN.LINEAR.B002",
+      "skill": "M2.FUN.LINEAR",
+      "level": 5,
+      "variant": "standard",
+      "stem": "두 일차함수 y = 2x + 3 과 y = −x + 9 의 그래프의 교점의 좌표는?",
+      "choices": [
+        { "text": "(2, 7)", "error": null },
+        { "text": "(7, 2)", "error": "INTERPRETATION" },
+        { "text": "(2, −7)", "error": "SIGN" },
+        { "text": "(3, 6)", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["교점에서는 두 식의 y가 같아요.", "2x + 3 = −x + 9.", "x = 2 를 한 식에 대입해 y를 구해요."],
+      "idea": "그래프의 교점 = 연립방정식의 해. 함수와 방정식이 만나는 핵심 지점!",
+      "solve": "2x + 3 = −x + 9 → 3x = 6 → x = 2, y = 7 → (2, 7).",
+      "remember": "교점 문제 = 두 식을 등호로 잇기. 검산은 나머지 식에 대입!",
+      "estimatedSec": 110,
+      "tags": ["교점", "연립과함수"]
+    },
+    {
+      "id": "M2.GEO.TRI.B001",
+      "skill": "M2.GEO.TRI",
+      "level": 3,
+      "variant": "standard",
+      "stem": "삼각형의 세 내각의 크기의 비가 2 : 3 : 4 일 때, 가장 큰 내각의 크기는?",
+      "choices": [
+        { "text": "80°", "error": null },
+        { "text": "40°", "error": "INTERPRETATION" },
+        { "text": "100°", "error": "CALCULATION" },
+        { "text": "90°", "error": "GUESSING" }
+      ],
+      "answerIndex": 0,
+      "hints": ["세 각을 2k, 3k, 4k로 놓아요.", "2k + 3k + 4k = 180.", "k = 20 → 가장 큰 각은 4k."],
+      "idea": "비율 조건 + 내각의 합 180° — k 치환의 도형 버전.",
+      "solve": "9k = 180 → k = 20 → 각은 40°, 60°, 80° → 최대 80°.",
+      "remember": "비의 합(9)으로 180을 나누면 k가 바로 나온다.",
+      "estimatedSec": 80,
+      "tags": ["내각비", "치환"]
+    },
+    {
+      "id": "M2.GEO.TRI.B002",
+      "skill": "M2.GEO.TRI",
+      "level": 5,
+      "variant": "standard",
+      "stem": "한 내각의 크기가 144°인 정다각형은?",
+      "choices": [
+        { "text": "정십각형", "error": null },
+        { "text": "정구각형", "error": "CALCULATION" },
+        { "text": "정십이각형", "error": "CALCULATION" },
+        { "text": "정팔각형", "error": "FORMULA" }
+      ],
+      "answerIndex": 0,
+      "hints": ["한 외각 = 180 − 144 = 36°.", "외각의 합은 항상 360°.", "n = 360 ÷ 36."],
+      "idea": "내각보다 외각이 빠르다 — 외각의 합 360°는 모든 다각형에서 불변!",
+      "solve": "외각 = 36° → n = 360/36 = 10 → 정십각형.",
+      "remember": "정다각형 역산은 '외각 = 360/n'이 지름길.",
+      "estimatedSec": 90,
+      "tags": ["정다각형", "외각", "역산"]
+    },
+    {
+      "id": "M2.STA.PROB.B001",
+      "skill": "M2.STA.PROB",
+      "level": 3,
+      "variant": "standard",
+      "stem": "1부터 10까지의 수가 각각 적힌 카드 10장 중 한 장을 뽑을 때, 3의 배수 또는 7이 나올 확률은?",
+      "choices": [
+        { "text": "2/5", "error": null },
+        { "text": "3/10", "error": "CONCEPT" },
+        { "text": "1/10", "error": "INTERPRETATION" },
+        { "text": "1/2", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["3의 배수를 모두 나열해요: 3, 6, 9.", "'또는'이고 겹치지 않으니 경우를 더해요: 3개 + 1개.", "4/10 을 약분해요."],
+      "idea": "'또는' = 덧셈 (단, 겹침이 없을 때). 나열 → 세기 → 나누기의 기본기.",
+      "solve": "3의 배수 {3,6,9} + {7} = 4가지 → 4/10 = 2/5.",
+      "remember": "'또는' 문제는 두 사건이 겹치는지부터 확인!",
+      "estimatedSec": 80,
+      "tags": ["합사건", "카드"]
+    },
+    {
+      "id": "M2.STA.PROB.B002",
+      "skill": "M2.STA.PROB",
+      "level": 5,
+      "variant": "standard",
+      "stem": "주사위 두 개를 동시에 던질 때, 나온 두 눈의 곱이 홀수일 확률은?",
+      "choices": [
+        { "text": "1/4", "error": null },
+        { "text": "1/2", "error": "CONCEPT" },
+        { "text": "3/4", "error": "CONCEPT" },
+        { "text": "1/6", "error": "CALCULATION" }
+      ],
+      "answerIndex": 0,
+      "hints": ["곱이 홀수가 되려면 두 눈이 각각 어때야 할까요?", "둘 다 홀수여야 해요 (홀×홀=홀).", "각각 홀수일 확률 1/2 씩 — '그리고'는 곱."],
+      "idea": "곱의 홀짝 성질(홀×홀만 홀)을 확률의 곱셈으로 연결하는 사고력 문제.",
+      "solve": "P(둘 다 홀수) = (1/2) × (1/2) = 1/4.",
+      "remember": "짝수가 하나라도 끼면 곱은 짝수 — 성질을 먼저, 계산은 나중.",
+      "estimatedSec": 100,
+      "tags": ["홀짝", "독립사건"]
+    }
+  ]
+}
