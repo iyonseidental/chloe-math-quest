@@ -45,6 +45,19 @@ import {
   genStaStat,
   transferStaStat,
 } from './m3.ts';
+import {
+  genH1Poly, transferH1Poly, genH1Eqin, transferH1Eqin, genH1Comb, transferH1Comb, genH1Mat, transferH1Mat,
+  genH2Geom, transferH2Geom, genH2Set, transferH2Set, genH2Func, transferH2Func,
+} from './h-common.ts';
+import {
+  genHaExp, transferHaExp, genHaTrig, transferHaTrig, genHaSeq, transferHaSeq,
+  genHc1Lim, transferHc1Lim, genHc1Diff, transferHc1Diff, genHc1Int, transferHc1Int,
+  genHpPerm, transferHpPerm, genHpProb, transferHpProb, genHpStat, transferHpStat,
+} from './h-elective.ts';
+import {
+  genHc2Ser, transferHc2Ser, genHc2Dif2, transferHc2Dif2, genHc2Int2, transferHc2Int2,
+  genHgConic, transferHgConic, genHgSpace, transferHgSpace, genHgVec, transferHgVec,
+} from './h-career.ts';
 
 export interface Draft {
   stem: string;
@@ -79,6 +92,14 @@ const STANDARD: Record<SkillId, Gen> = {
   'M3.FUN.QUAD': genFunQuad,
   'M3.GEO.TRIG': genGeoTrig,
   'M3.STA.STAT': genStaStat,
+  // ---- 고등 (전량 원저작 · 자기검산 내장) ----
+  'H1.POLY': genH1Poly, 'H1.EQIN': genH1Eqin, 'H1.COMB': genH1Comb, 'H1.MAT': genH1Mat,
+  'H2.GEOM': genH2Geom, 'H2.SET': genH2Set, 'H2.FUNC': genH2Func,
+  'HA.EXP': genHaExp, 'HA.TRIG': genHaTrig, 'HA.SEQ': genHaSeq,
+  'HC1.LIM': genHc1Lim, 'HC1.DIFF': genHc1Diff, 'HC1.INT': genHc1Int,
+  'HP.PERM': genHpPerm, 'HP.PROB': genHpProb, 'HP.STAT': genHpStat,
+  'HC2.SER': genHc2Ser, 'HC2.DIF2': genHc2Dif2, 'HC2.INT2': genHc2Int2,
+  'HG.CONIC': genHgConic, 'HG.SPACE': genHgSpace, 'HG.VEC': genHgVec,
 };
 
 const TRANSFER: Record<SkillId, Gen> = {
@@ -101,6 +122,13 @@ const TRANSFER: Record<SkillId, Gen> = {
   'M3.FUN.QUAD': transferFunQuad,
   'M3.GEO.TRIG': transferGeoTrig,
   'M3.STA.STAT': transferStaStat,
+  'H1.POLY': transferH1Poly, 'H1.EQIN': transferH1Eqin, 'H1.COMB': transferH1Comb, 'H1.MAT': transferH1Mat,
+  'H2.GEOM': transferH2Geom, 'H2.SET': transferH2Set, 'H2.FUNC': transferH2Func,
+  'HA.EXP': transferHaExp, 'HA.TRIG': transferHaTrig, 'HA.SEQ': transferHaSeq,
+  'HC1.LIM': transferHc1Lim, 'HC1.DIFF': transferHc1Diff, 'HC1.INT': transferHc1Int,
+  'HP.PERM': transferHpPerm, 'HP.PROB': transferHpProb, 'HP.STAT': transferHpStat,
+  'HC2.SER': transferHc2Ser, 'HC2.DIF2': transferHc2Dif2, 'HC2.INT2': transferHc2Int2,
+  'HG.CONIC': transferHgConic, 'HG.SPACE': transferHgSpace, 'HG.VEC': transferHgVec,
 };
 
 // 문제 공급 우선순위: ① 큐레이션 문제은행(파일) 일부 확률 ② 절차적 생성기(무한 공급)

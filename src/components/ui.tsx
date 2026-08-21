@@ -26,11 +26,18 @@ export function LevelPips({ mastered, current, color }: { mastered: number[]; cu
   );
 }
 
+const LEVEL_NAMES = ['기초', '연습', '표준', '심화', 'Elite'];
+
 export function Stars({ level }: { level: number }) {
   return (
-    <span className="text-amber-400" aria-label={`난이도 ${level}/5`}>
-      {'★'.repeat(level)}
-      <span className="text-slate-300">{'★'.repeat(5 - level)}</span>
+    <span className="inline-flex items-center gap-1" aria-label={`난이도 ${level}/5 ${LEVEL_NAMES[level - 1] ?? ''}`}>
+      <span className="text-amber-400">
+        {'★'.repeat(level)}
+        <span className="text-slate-300">{'★'.repeat(5 - level)}</span>
+      </span>
+      <span className={`rounded-md px-1.5 py-0.5 text-[9px] font-bold ${level >= 5 ? 'bg-violet-100 text-violet-600' : level >= 4 ? 'bg-rose-100 text-rose-500' : level >= 3 ? 'bg-amber-100 text-amber-600' : 'bg-emerald-100 text-emerald-600'}`}>
+        Lv.{level} {LEVEL_NAMES[level - 1] ?? ''}
+      </span>
     </span>
   );
 }
