@@ -9,7 +9,7 @@ for (const r of results) console.log(`${r.ok ? '✅' : '❌'} ${r.name.padEnd(22
 
 let p2ok = true;
 const PHASE2 = ['test22-graph', 'test22-m1full', 'test22-elite', 'simulate22-elite'];
-const PHASE3 = ['test23-levelwindow', 'test23-tagging', 'test23-borderline', 'test23-elite2', 'test23-golden', 'test23-pilot', 'test23-backup', 'verify-generators'];
+const PHASE3 = ['test23-levelwindow', 'test23-tagging', 'test23-borderline', 'test23-elite2', 'test23-golden', 'test23-pilot', 'test23-backup', 'test23-sync', 'verify-generators'];
 for (const name of [...PHASE2, ...PHASE3]) {
   if (!fs.existsSync(`scripts/${name}.mjs`)) continue; // 아직 없는 Phase 3 스위트는 건너뜀
   let ok = true;

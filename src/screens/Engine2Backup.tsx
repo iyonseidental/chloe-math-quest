@@ -8,6 +8,8 @@ import { buildFullBackup, buildPreRestoreBackup, validateBackupForRestore, type 
 import { buildAnalysisPackage } from '../engine2/analysis23.ts';
 import { zipStore } from '../engine2/zip23.ts';
 import { ENGINE2_STUDENT_ID } from '../engine2/store21.ts';
+import { loadSyncConfig, saveSyncConfig, loadSyncMeta, syncNow, testConnection, applyAdoptedDoc } from '../engine2/sync23.ts';
+import { Cloud } from 'lucide-react';
 
 const HISTORY_KEY = 'chloe-backup-history-v1'; // 이벤트 원장과 분리된 별도 저장 — 학습 성과에 무영향
 
@@ -61,6 +63,44 @@ export default function Engine2Backup({ onBack }: { onBack: () => void }) {
   const [restore, setRestore] = useState<{ validation: RestoreValidation; bytes: Uint8Array } | null>(null);
   const [restored, setRestored] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [syncCfg, setSyncCfg] = useState(() => loadSyncConfig());
+  const [syncOwner, setSyncOwner] = useState(syncCfg?.owner ?? 'iyonseidental');
+  const [syncRepo, setSyncRepo] = useState(syncCfg?.repo ?? 'chloe-math-data');
+  const [syncToken, setSyncToken] = useState(syncCfg?.token ?? '');
+  const [syncMsg, setSyncMsg] = useState<string | null>(null);
+  const [syncBusy, setSyncBusy] = useState(false);
+  const syncMeta = loadSyncMeta();
+
+  const connectSync = async () => {
+    setSyncBusy(true);
+    setSyncMsg(null);
+    const cfg = { owner: syncOwner.trim(), repo: syncRepo.trim(), token: syncToken.trim(), path: 'chloe-events.json' };
+    const t = await testConnection(cfg);
+    if (!t.ok) {
+      setSyncMsg('✗ ' + t.message);
+      setSyncBusy(false);
+      return;
+    }
+    saveSyncConfig(cfg);
+    setSyncCfg(cfg);
+    const r = await syncNow(log);
+    setSyncMsg('✓ ' + t.message + ' · ' + r.message);
+    if (r.needsReload && r.adoptedDoc) {
+      applyAdoptedDoc(r.adoptedDoc);
+      setTimeout(() => window.location.reload(), 800);
+    }
+    setSyncBusy(false);
+  };
+  const runSync = async () => {
+    setSyncBusy(true);
+    const r = await syncNow(log);
+    setSyncMsg((r.status === 'error' ? '✗ ' : '✓ ') + r.message);
+    if (r.needsReload && r.adoptedDoc) {
+      applyAdoptedDoc(r.adoptedDoc);
+      setTimeout(() => window.location.reload(), 800);
+    }
+    setSyncBusy(false);
+  };
   const history = useMemo(() => loadHistory(), [report, restored]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const eventCount = log.events.length;
@@ -227,6 +267,49 @@ export default function Engine2Backup({ onBack }: { onBack: () => void }) {
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" /> {error}
         </div>
       )}
+
+      {/* 클라우드 동기화 (GitHub) — 어디서든 이어하기 */}
+      <div className="rounded-2xl border-2 border-sky-200 bg-gradient-to-b from-sky-50 to-white p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm font-extrabold text-slate-800">
+            <Cloud className="h-4 w-4 text-sky-500" /> 클라우드 동기화
+          </div>
+          {syncCfg ? (
+            <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-bold text-emerald-600">연결됨 · {syncCfg.owner}/{syncCfg.repo}</span>
+          ) : (
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-400">미설정</span>
+          )}
+        </div>
+        <p className="mt-1 text-[11px] leading-relaxed text-slate-500">
+          설정하면 <b>어떤 기기에서 접속해도 학습 기록이 자동으로 이어져요</b> — 앱을 열 때 최신 기록을 가져오고, 학습 후 자동 저장돼요. 기록은 회원님의 <b>비공개</b> GitHub 저장소에만 보관되고, 토큰은 이 기기에만 저장됩니다.
+        </p>
+        {syncCfg ? (
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button type="button" disabled={syncBusy} onClick={runSync} className="rounded-xl bg-gradient-to-r from-sky-500 to-indigo-500 px-4 py-2 text-xs font-extrabold text-white disabled:opacity-40">
+              {syncBusy ? '동기화 중…' : '지금 동기화'}
+            </button>
+            <button type="button" onClick={() => { saveSyncConfig(null); setSyncCfg(null); setSyncMsg('동기화가 해제되었어요 (기록은 이 기기에 그대로 남아요)'); }} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-500 hover:bg-slate-50">
+              해제
+            </button>
+            {syncMeta.lastSyncAt && <span className="text-[10px] text-slate-400">마지막 동기화 {new Date(syncMeta.lastSyncAt).toLocaleString()}</span>}
+          </div>
+        ) : (
+          <div className="mt-3 flex flex-col gap-2">
+            <div className="grid gap-2 sm:grid-cols-2">
+              <input value={syncOwner} onChange={(e) => setSyncOwner(e.target.value)} placeholder="GitHub 아이디" className="rounded-xl border border-slate-200 px-3 py-2 text-xs" />
+              <input value={syncRepo} onChange={(e) => setSyncRepo(e.target.value)} placeholder="비공개 저장소 이름" className="rounded-xl border border-slate-200 px-3 py-2 text-xs" />
+            </div>
+            <input value={syncToken} onChange={(e) => setSyncToken(e.target.value)} type="password" placeholder="GitHub 토큰 (이 기기에만 저장됨)" className="rounded-xl border border-slate-200 px-3 py-2 text-xs" />
+            <button type="button" disabled={syncBusy || !syncToken.trim()} onClick={connectSync} className="rounded-xl bg-gradient-to-r from-sky-500 to-indigo-500 py-2.5 text-xs font-extrabold text-white disabled:opacity-40">
+              {syncBusy ? '연결 확인 중…' : '연결하고 동기화 시작'}
+            </button>
+            <p className="text-[10px] leading-relaxed text-slate-400">
+              토큰 만들기: github.com → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token → Repository access에서 <b>chloe-math-data 저장소 하나만</b> 선택 → Permissions에서 <b>Contents: Read and write</b>만 켜기 → 생성된 토큰을 위에 붙여넣기. (이 저장소 외에는 아무 권한도 없는 열쇠예요)
+            </p>
+          </div>
+        )}
+        {syncMsg && <div className={`mt-2 rounded-xl px-3 py-2 text-[11px] ${syncMsg.startsWith('✗') ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-700'}`}>{syncMsg}</div>}
+      </div>
 
       {/* Restore */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4">

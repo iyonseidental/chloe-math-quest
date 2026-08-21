@@ -11,6 +11,7 @@ import { finalizeDiagnostic, type DiagnosticReport } from '../engine2/diagnostic
 import { loadTwin, saveEventLog, clearEventLog, ENGINE2_STUDENT_ID } from '../engine2/store21.ts';
 import { replayFromScratch, freshTwin21 } from '../engine2/replay21.ts';
 import { emptyLog, resetEventSeq } from '../engine2/events21.ts';
+import { syncNow, loadSyncConfig, applyAdoptedDoc } from '../engine2/sync23.ts';
 
 interface Engine2Ctx {
   twin: DigitalTwin21;
@@ -35,6 +36,50 @@ export function Engine2Provider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     saveEventLog(log);
+  }, [log]);
+
+  // ---- GitHub 클라우드 동기화 (설정된 경우에만) ----
+  // 시작 시: 원격이 더 최신이면 가져와서 이어하기. 이후: 학습이 멈춘 지 15초 뒤 자동 저장.
+  useEffect(() => {
+    if (!loadSyncConfig()) return;
+    let cancelled = false;
+    syncNow(ref.current.log).then((r) => {
+      if (cancelled) return;
+      if (r.needsReload && r.adoptedDoc) {
+        if (r.safetyBackup) {
+          const blob = new Blob([JSON.stringify(r.safetyBackup)], { type: 'application/json' });
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'CHLOE_MATH_SAFETY_' + new Date().toISOString().slice(0, 10) + '.json';
+          a.click();
+        }
+        applyAdoptedDoc(r.adoptedDoc);
+        window.location.reload();
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!loadSyncConfig() || log.events.length === 0) return;
+    const id = setTimeout(() => {
+      // 백그라운드 저장: 원격 채택은 시작 시에만 — 학습 중 화면 교체 방지
+      syncNow(ref.current.log).then((r) => {
+        if (r.status === 'error') console.warn('[sync]', r.message);
+      });
+    }, 15000);
+    const onHide = () => {
+      if (document.visibilityState === 'hidden') syncNow(ref.current.log);
+    };
+    document.addEventListener('visibilitychange', onHide);
+    return () => {
+      clearTimeout(id);
+      document.removeEventListener('visibilitychange', onHide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [log]);
 
   const value = useMemo<Engine2Ctx>(
