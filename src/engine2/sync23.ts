@@ -42,6 +42,7 @@ export interface SyncConfig {
   repo: string;
   token: string;
   path: string; // 기본 chloe-events.json
+  tokenSavedAt?: string; // 토큰 저장 시각 — 만료(최대 1년) 임박 안내용
 }
 
 export interface SyncMeta {
@@ -61,8 +62,26 @@ export function loadSyncConfig(): SyncConfig | null {
   }
 }
 export function saveSyncConfig(c: SyncConfig | null): void {
-  if (c) localStorage.setItem(CFG_KEY, JSON.stringify(c));
+  if (c) localStorage.setItem(CFG_KEY, JSON.stringify({ tokenSavedAt: new Date().toISOString(), ...c }));
   else localStorage.removeItem(CFG_KEY);
+}
+
+// 토큰 나이(일) — fine-grained 토큰은 최대 1년이므로 330일부터 갱신을 권한다
+export function tokenAgeDays(c: SyncConfig | null): number | null {
+  if (!c?.tokenSavedAt) return null;
+  return Math.floor((Date.now() - Date.parse(c.tokenSavedAt)) / 86400000);
+}
+export function tokenRenewalDue(c: SyncConfig | null): boolean {
+  const age = tokenAgeDays(c);
+  return age !== null && age >= 330;
+}
+
+// 기존 설정을 유지한 채 토큰만 교체 (만료 갱신 경로)
+export function replaceToken(newToken: string): boolean {
+  const c = loadSyncConfig();
+  if (!c) return false;
+  saveSyncConfig({ ...c, token: newToken.trim(), tokenSavedAt: new Date().toISOString() });
+  return true;
 }
 export function loadSyncMeta(): SyncMeta {
   try {
@@ -123,6 +142,7 @@ async function ghGet(cfg: SyncConfig, f: FetchLike): Promise<{ found: boolean; s
     cache: 'no-store',
   });
   if (res.status === 404) return { found: false, sha: null, doc: null };
+  if (res.status === 401) return { found: false, sha: null, doc: null, error: 'TOKEN_EXPIRED' };
   if (!res.ok) return { found: false, sha: null, doc: null, error: `GitHub 응답 ${res.status} — 토큰/저장소 이름을 확인하세요` };
   const j = (await res.json()) as { sha: string; content: string };
   try {
@@ -184,6 +204,9 @@ export async function syncNow(localLog: EventLog, fetchImpl: FetchLike = fetch):
     remote = await ghGet(cfg, fetchImpl);
   } catch {
     return { status: 'error', message: '네트워크 오류 — 오프라인이면 나중에 자동 재시도돼요', needsReload: false };
+  }
+  if (remote.error === 'TOKEN_EXPIRED') {
+    return { status: 'error', message: '🔑 토큰이 만료되었거나 무효예요 — 학습 기록은 안전하며, DATA & BACKUP에서 새 토큰만 붙여넣으면 동기화가 재개돼요', needsReload: false };
   }
   if (remote.error) return { status: 'error', message: remote.error, needsReload: false };
 

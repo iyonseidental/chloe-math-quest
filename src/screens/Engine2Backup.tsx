@@ -8,7 +8,7 @@ import { buildFullBackup, buildPreRestoreBackup, validateBackupForRestore, type 
 import { buildAnalysisPackage } from '../engine2/analysis23.ts';
 import { zipStore } from '../engine2/zip23.ts';
 import { ENGINE2_STUDENT_ID } from '../engine2/store21.ts';
-import { loadSyncConfig, saveSyncConfig, loadSyncMeta, syncNow, testConnection, applyAdoptedDoc } from '../engine2/sync23.ts';
+import { loadSyncConfig, saveSyncConfig, loadSyncMeta, syncNow, testConnection, applyAdoptedDoc, replaceToken, tokenAgeDays, tokenRenewalDue } from '../engine2/sync23.ts';
 import { Cloud } from 'lucide-react';
 
 const HISTORY_KEY = 'chloe-backup-history-v1'; // 이벤트 원장과 분리된 별도 저장 — 학습 성과에 무영향
@@ -69,6 +69,29 @@ export default function Engine2Backup({ onBack }: { onBack: () => void }) {
   const [syncToken, setSyncToken] = useState(syncCfg?.token ?? '');
   const [syncMsg, setSyncMsg] = useState<string | null>(null);
   const [syncBusy, setSyncBusy] = useState(false);
+  const [renewToken, setRenewToken] = useState('');
+  const [showRenew, setShowRenew] = useState(false);
+
+  const doRenew = async () => {
+    if (!renewToken.trim()) return;
+    setSyncBusy(true);
+    const cfg = loadSyncConfig();
+    if (cfg) {
+      const t = await testConnection({ ...cfg, token: renewToken.trim() });
+      if (!t.ok) {
+        setSyncMsg('✗ 새 토큰 확인 실패: ' + t.message);
+        setSyncBusy(false);
+        return;
+      }
+      replaceToken(renewToken);
+      setSyncCfg(loadSyncConfig());
+      setRenewToken('');
+      setShowRenew(false);
+      const r = await syncNow(log);
+      setSyncMsg('✓ 토큰 갱신 완료! ' + r.message);
+    }
+    setSyncBusy(false);
+  };
   const syncMeta = loadSyncMeta();
 
   const connectSync = async () => {
@@ -288,10 +311,27 @@ export default function Engine2Backup({ onBack }: { onBack: () => void }) {
             <button type="button" disabled={syncBusy} onClick={runSync} className="rounded-xl bg-gradient-to-r from-sky-500 to-indigo-500 px-4 py-2 text-xs font-extrabold text-white disabled:opacity-40">
               {syncBusy ? '동기화 중…' : '지금 동기화'}
             </button>
+            <button type="button" onClick={() => setShowRenew((v) => !v)} className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-600 hover:bg-amber-100">
+              토큰 갱신
+            </button>
             <button type="button" onClick={() => { saveSyncConfig(null); setSyncCfg(null); setSyncMsg('동기화가 해제되었어요 (기록은 이 기기에 그대로 남아요)'); }} className="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-500 hover:bg-slate-50">
               해제
             </button>
             {syncMeta.lastSyncAt && <span className="text-[10px] text-slate-400">마지막 동기화 {new Date(syncMeta.lastSyncAt).toLocaleString()}</span>}
+            {tokenRenewalDue(syncCfg) && (
+              <span className="w-full rounded-xl bg-amber-50 px-3 py-2 text-[11px] text-amber-700">
+                ⏰ 토큰을 저장한 지 {tokenAgeDays(syncCfg)}일이 지났어요 — GitHub 토큰은 최대 1년이라 곧 만료될 수 있어요. 미리 새 토큰을 만들어 &quot;토큰 갱신&quot;으로 바꿔 두면 끊김이 없어요.
+              </span>
+            )}
+            {showRenew && (
+              <div className="flex w-full flex-wrap gap-2">
+                <input value={renewToken} onChange={(e) => setRenewToken(e.target.value)} type="password" placeholder="새 GitHub 토큰 붙여넣기" className="min-w-0 flex-1 rounded-xl border border-amber-200 px-3 py-2 text-xs" />
+                <button type="button" disabled={syncBusy || !renewToken.trim()} onClick={doRenew} className="rounded-xl bg-amber-500 px-4 py-2 text-xs font-extrabold text-white disabled:opacity-40">
+                  {syncBusy ? '확인 중…' : '교체'}
+                </button>
+                <p className="w-full text-[10px] text-slate-400">새 토큰 만들기는 처음과 동일: GitHub → Settings → Developer settings → Fine-grained tokens (chloe-math-data · Contents RW). 기록은 그대로 유지돼요.</p>
+              </div>
+            )}
           </div>
         ) : (
           <div className="mt-3 flex flex-col gap-2">
